@@ -13,6 +13,9 @@
 		52AB2E8528C58AA500600523 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52AB2E8328C58AA500600523 /* Main.storyboard */; };
 		52AB2E8728C58AA700600523 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52AB2E8628C58AA700600523 /* Assets.xcassets */; };
 		52AB2E8A28C58AA700600523 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52AB2E8828C58AA700600523 /* LaunchScreen.storyboard */; };
+		FEF310BA28C5A268004A7235 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF310B928C5A268004A7235 /* ViewModel.swift */; };
+		FEF310BC28C5A270004A7235 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF310BB28C5A270004A7235 /* Model.swift */; };
+		FEF310BE28C5A279004A7235 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF310BD28C5A279004A7235 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		52AB2E8628C58AA700600523 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52AB2E8928C58AA700600523 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52AB2E8B28C58AA700600523 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FEF310B928C5A268004A7235 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		FEF310BB28C5A270004A7235 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		FEF310BD28C5A279004A7235 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,7 @@
 		FEF310B628C5A006004A7235 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				FEF310B928C5A268004A7235 /* ViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -104,6 +111,7 @@
 		FEF310B728C5A01D004A7235 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FEF310BB28C5A270004A7235 /* Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -111,6 +119,7 @@
 		FEF310B828C5A043004A7235 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				FEF310BD28C5A279004A7235 /* Extensions.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -186,8 +195,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEF310BC28C5A270004A7235 /* Model.swift in Sources */,
+				FEF310BE28C5A279004A7235 /* Extensions.swift in Sources */,
 				52AB2E8228C58AA400600523 /* ViewController.swift in Sources */,
 				52AB2E7E28C58AA400600523 /* AppDelegate.swift in Sources */,
+				FEF310BA28C5A268004A7235 /* ViewModel.swift in Sources */,
 				52AB2E8028C58AA400600523 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
