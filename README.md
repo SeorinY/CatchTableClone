@@ -10,7 +10,7 @@
     - UIKit ( No Storyboard ) 
     
 - Tool : <img src="https://img.shields.io/badge/Xcode-147EFB?style=for-the-badge&logo=Xcode&logoColor=white"> 
-- 예상 개발 기간 : 9.5 ~ 16
+- 예상 개발 기간 : 9월 5일 ~ 10월 16일
 
 ## commit 컨벤션
 FEA: (Feature) 기능 추가  
@@ -21,3 +21,4 @@ TST: (Test) 새로운 유닛테스트를 추가하거나 기존 테스트를 수
 BLD: (Build) 빌드 프로세스 관련 코드 혹은 스크립트를 수정  
 PERF: (Performance) 계산 속도의 개선과 관련된 작업  
 CLN: (Cleanup) 코드를 정리하거나 리팩토링한 작업  
+일
