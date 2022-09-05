@@ -25,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="-441" y="542"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller1-->
         <scene sceneID="AiS-ux-u3u">
             <objects>
-                <viewController id="cAO-iF-s7k" sceneMemberID="viewController">
+                <viewController id="cAO-iF-s7k" customClass="LoginViewController1" customModule="CatchTableClone" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qvE-RN-aVC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
