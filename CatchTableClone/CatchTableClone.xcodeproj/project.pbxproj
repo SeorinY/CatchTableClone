@@ -29,6 +29,7 @@
 		FED51B7F28C88C970093CDCA /* InquireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B7E28C88C970093CDCA /* InquireViewController.swift */; };
 		FED51B8128C88CA10093CDCA /* PhoneNumberLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B8028C88CA10093CDCA /* PhoneNumberLoginViewController.swift */; };
 		FED51B8328C88CCE0093CDCA /* FindPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B8228C88CCE0093CDCA /* FindPasswordViewController.swift */; };
+		FED51B8A28C890300093CDCA /* CSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B8928C890300093CDCA /* CSTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		FED51B7E28C88C970093CDCA /* InquireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquireViewController.swift; sourceTree = "<group>"; };
 		FED51B8028C88CA10093CDCA /* PhoneNumberLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberLoginViewController.swift; sourceTree = "<group>"; };
 		FED51B8228C88CCE0093CDCA /* FindPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordViewController.swift; sourceTree = "<group>"; };
+		FED51B8928C890300093CDCA /* CSTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				52B4D28728C5B76B00FEB427 /* SceneDelegate.swift */,
 				52B4D2A228C5B8B900FEB427 /* Extesion.swift */,
 				52B4D2AB28C8261700FEB427 /* ConsoleLog.swift */,
+				FED51B8928C890300093CDCA /* CSTextField.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				52B4D28828C5B76B00FEB427 /* SceneDelegate.swift in Sources */,
 				FED51B7D28C88C780093CDCA /* PhoneNumberLoginView.swift in Sources */,
 				FED51B6C28C82EA20093CDCA /* LoginLogoView.swift in Sources */,
+				FED51B8A28C890300093CDCA /* CSTextField.swift in Sources */,
 				FED51B6E28C831550093CDCA /* LoginView.swift in Sources */,
 				FED51B8328C88CCE0093CDCA /* FindPasswordViewController.swift in Sources */,
 				FEB2D4B828C5BD870091BA6B /* LoginViewController.swift in Sources */,
