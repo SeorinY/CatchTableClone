@@ -11,9 +11,9 @@ import KakaoSDKCommon
 import KakaoSDKUser
 
 
-class LoginViewController2: UIViewController {
-    private let loginLogoView = LoginLogoView_()
-    private let loginView = LoginView_()
+class LoginViewController: UIViewController {
+    private let loginLogoView = LoginLogoView()
+    private let loginView = LoginView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +45,7 @@ class LoginViewController2: UIViewController {
 
 //MARK: - Controller
 
-extension LoginViewController2 : LoginVieWDelegate{
+extension LoginViewController : LoginVieWDelegate{
     func kakaoLoginButtonPressed() {
         print("kakao")
         UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
@@ -61,23 +61,37 @@ extension LoginViewController2 : LoginVieWDelegate{
             }
     }
     func appleLoginButtonPressed() {
-        print("apple")
+        let vc = UIViewController()
+        vc.view.backgroundColor = .systemBackground
+        self.present(vc, animated: true)
     }
     
     func naverLoginButtonPressed() {
-        print("naver")
+        let alert = UIAlertController(title: "'캐치테이블'에서 'NAVER'을(를) 열려고 합니다.", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "열기", style: .default) {_ in
+            self.navigationController?.pushViewController(UIViewController(), animated: true)
+        })
+        
+        self.present(alert, animated: true)
     }
     
     func questionmarkButtonPressed() {
-        print("naver")
+        let vc = UIViewController()
+        vc.view.backgroundColor = .systemBackground
+        self.present(vc, animated: false)
     }
     
     func regsterButtonPressed() {
-        print("naver")
+        let vc = UIViewController()
+        vc.view.frame = view.bounds
+        navigationController?.pushViewController(vc, animated: false)
     }
     
     func loginButtonPressed() {
-        print("naver")
+        let vc = UIViewController()
+        vc.view.frame = view.bounds
+        navigationController?.pushViewController(vc, animated: false)
     }
 
 }

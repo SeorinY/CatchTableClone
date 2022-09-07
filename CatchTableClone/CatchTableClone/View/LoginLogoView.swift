@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginLogoView_: UIView {
+class LoginLogoView: UIView {
     private let subLogoLabel : UILabel = {
         let label = UILabel()
         label.text = "즐거운 미식생활의 시작"
