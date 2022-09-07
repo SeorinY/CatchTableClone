@@ -18,6 +18,7 @@
 		52B4D2A628C5B8D800FEB427 /* DataKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4D2A528C5B8D800FEB427 /* DataKeys.swift */; };
 		52B4D2A828C5B8DE00FEB427 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4D2A728C5B8DE00FEB427 /* Model.swift */; };
 		A2684A48FE5A8BC81BA9457C /* Pods_CatchTableClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DBF08BB74A170F81A01B2A /* Pods_CatchTableClone.framework */; };
+		FEB2D4B828C5BD870091BA6B /* LoginViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB2D4B728C5BD870091BA6B /* LoginViewController2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		52B4D2A728C5B8DE00FEB427 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		99CA209A2337CD3AFB9BDCB8 /* Pods-CatchTableClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatchTableClone.release.xcconfig"; path = "Target Support Files/Pods-CatchTableClone/Pods-CatchTableClone.release.xcconfig"; sourceTree = "<group>"; };
 		B9DBF08BB74A170F81A01B2A /* Pods_CatchTableClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CatchTableClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEB2D4B728C5BD870091BA6B /* LoginViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				52B4D28928C5B76B00FEB427 /* LoginViewController1.swift */,
+				FEB2D4B728C5BD870091BA6B /* LoginViewController2.swift */,
 				52B4D29E28C5B89800FEB427 /* View */,
 			);
 			path = Controller;
@@ -148,7 +151,6 @@
 				4D4AEC18375228CF3181ED0A /* Pods-CatchTableClone.debug.xcconfig */,
 				99CA209A2337CD3AFB9BDCB8 /* Pods-CatchTableClone.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -282,6 +284,7 @@
 				52B4D28628C5B76B00FEB427 /* AppDelegate.swift in Sources */,
 				52B4D2A128C5B8B100FEB427 /* ViewModel.swift in Sources */,
 				52B4D28828C5B76B00FEB427 /* SceneDelegate.swift in Sources */,
+				FEB2D4B828C5BD870091BA6B /* LoginViewController2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,7 +360,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -411,7 +414,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -432,6 +435,7 @@
 				DEVELOPMENT_TEAM = FQJCX687Q4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CatchTableClone/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -461,6 +465,7 @@
 				DEVELOPMENT_TEAM = FQJCX687Q4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CatchTableClone/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
