@@ -1,9 +1,17 @@
+////
+////  ViewController.swift
+////  CatchTableClone
+////
+////  Created by Mac Book Pro on 2022/09/05.
+////
 //
-//  ViewController.swift
-//  CatchTableClone
+//import UIKit
+//import SnapKit
 //
-//  Created by Mac Book Pro on 2022/09/05.
+//class LoginViewController1: UIViewController {
+//    private let loginHeaderView = LoginHeaderView()
 //
+
 
 import UIKit
 import SnapKit
