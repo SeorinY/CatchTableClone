@@ -21,6 +21,14 @@
 		FEB2D4B828C5BD870091BA6B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB2D4B728C5BD870091BA6B /* LoginViewController.swift */; };
 		FED51B6C28C82EA20093CDCA /* LoginLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B6B28C82EA20093CDCA /* LoginLogoView.swift */; };
 		FED51B6E28C831550093CDCA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B6D28C831550093CDCA /* LoginView.swift */; };
+		FED51B7528C88BDC0093CDCA /* PhoneNumberRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B7428C88BDC0093CDCA /* PhoneNumberRegisterView.swift */; };
+		FED51B7728C88C260093CDCA /* PhoneNumberRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B7628C88C260093CDCA /* PhoneNumberRegisterViewController.swift */; };
+		FED51B7928C88C3D0093CDCA /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B7828C88C3D0093CDCA /* QuestionView.swift */; };
+		FED51B7B28C88C690093CDCA /* InquireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B7A28C88C680093CDCA /* InquireView.swift */; };
+		FED51B7D28C88C780093CDCA /* PhoneNumberLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B7C28C88C780093CDCA /* PhoneNumberLoginView.swift */; };
+		FED51B7F28C88C970093CDCA /* InquireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B7E28C88C970093CDCA /* InquireViewController.swift */; };
+		FED51B8128C88CA10093CDCA /* PhoneNumberLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B8028C88CA10093CDCA /* PhoneNumberLoginViewController.swift */; };
+		FED51B8328C88CCE0093CDCA /* FindPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B8228C88CCE0093CDCA /* FindPasswordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +51,14 @@
 		FED51B6B28C82EA20093CDCA /* LoginLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLogoView.swift; sourceTree = "<group>"; };
 		FED51B6D28C831550093CDCA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		FED51B6F28C87FD60093CDCA /* CatchTableClone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CatchTableClone.entitlements; sourceTree = "<group>"; };
+		FED51B7428C88BDC0093CDCA /* PhoneNumberRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberRegisterView.swift; sourceTree = "<group>"; };
+		FED51B7628C88C260093CDCA /* PhoneNumberRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberRegisterViewController.swift; sourceTree = "<group>"; };
+		FED51B7828C88C3D0093CDCA /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
+		FED51B7A28C88C680093CDCA /* InquireView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquireView.swift; sourceTree = "<group>"; };
+		FED51B7C28C88C780093CDCA /* PhoneNumberLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberLoginView.swift; sourceTree = "<group>"; };
+		FED51B7E28C88C970093CDCA /* InquireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquireViewController.swift; sourceTree = "<group>"; };
+		FED51B8028C88CA10093CDCA /* PhoneNumberLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberLoginViewController.swift; sourceTree = "<group>"; };
+		FED51B8228C88CCE0093CDCA /* FindPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +117,8 @@
 		52B4D29A28C5B82D00FEB427 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				FEB2D4B728C5BD870091BA6B /* LoginViewController.swift */,
+				FED51B8528C88CF00093CDCA /* Other */,
+				FED51B8428C88CE50093CDCA /* Core */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -137,9 +154,13 @@
 		52B4D29E28C5B89800FEB427 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				52B4D29F28C5B89F00FEB427 /* StoryBoard */,
 				FED51B6B28C82EA20093CDCA /* LoginLogoView.swift */,
+				FED51B7428C88BDC0093CDCA /* PhoneNumberRegisterView.swift */,
 				FED51B6D28C831550093CDCA /* LoginView.swift */,
+				FED51B7828C88C3D0093CDCA /* QuestionView.swift */,
+				FED51B7A28C88C680093CDCA /* InquireView.swift */,
+				FED51B7C28C88C780093CDCA /* PhoneNumberLoginView.swift */,
+				52B4D29F28C5B89F00FEB427 /* StoryBoard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -168,6 +189,41 @@
 				B9DBF08BB74A170F81A01B2A /* Pods_CatchTableClone.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FED51B8428C88CE50093CDCA /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				FEB2D4B728C5BD870091BA6B /* LoginViewController.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		FED51B8528C88CF00093CDCA /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				FED51B8828C88D4C0093CDCA /* General */,
+				FED51B8728C88D1E0093CDCA /* OnBoarding */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		FED51B8728C88D1E0093CDCA /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				FED51B7628C88C260093CDCA /* PhoneNumberRegisterViewController.swift */,
+				FED51B7E28C88C970093CDCA /* InquireViewController.swift */,
+				FED51B8028C88CA10093CDCA /* PhoneNumberLoginViewController.swift */,
+				FED51B8228C88CCE0093CDCA /* FindPasswordViewController.swift */,
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
+		FED51B8828C88D4C0093CDCA /* General */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = General;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,15 +341,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FED51B7528C88BDC0093CDCA /* PhoneNumberRegisterView.swift in Sources */,
+				FED51B7728C88C260093CDCA /* PhoneNumberRegisterViewController.swift in Sources */,
+				FED51B7F28C88C970093CDCA /* InquireViewController.swift in Sources */,
+				FED51B7B28C88C690093CDCA /* InquireView.swift in Sources */,
+				FED51B8128C88CA10093CDCA /* PhoneNumberLoginViewController.swift in Sources */,
 				52B4D2A828C5B8DE00FEB427 /* Model.swift in Sources */,
 				52B4D2AC28C8261700FEB427 /* ConsoleLog.swift in Sources */,
 				52B4D2A628C5B8D800FEB427 /* DataKeys.swift in Sources */,
 				52B4D2A328C5B8B900FEB427 /* Extesion.swift in Sources */,
+				FED51B7928C88C3D0093CDCA /* QuestionView.swift in Sources */,
 				52B4D28628C5B76B00FEB427 /* AppDelegate.swift in Sources */,
 				52B4D2A128C5B8B100FEB427 /* ViewModel.swift in Sources */,
 				52B4D28828C5B76B00FEB427 /* SceneDelegate.swift in Sources */,
+				FED51B7D28C88C780093CDCA /* PhoneNumberLoginView.swift in Sources */,
 				FED51B6C28C82EA20093CDCA /* LoginLogoView.swift in Sources */,
 				FED51B6E28C831550093CDCA /* LoginView.swift in Sources */,
+				FED51B8328C88CCE0093CDCA /* FindPasswordViewController.swift in Sources */,
 				FEB2D4B828C5BD870091BA6B /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
