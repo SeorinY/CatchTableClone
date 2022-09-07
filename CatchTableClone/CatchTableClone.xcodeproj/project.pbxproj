@@ -23,6 +23,8 @@
 		A2684A48FE5A8BC81BA9457C /* Pods_CatchTableClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DBF08BB74A170F81A01B2A /* Pods_CatchTableClone.framework */; };
 		FEB2D4B828C5BD870091BA6B /* LoginViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB2D4B728C5BD870091BA6B /* LoginViewController2.swift */; };
 		FED51B6A28C8270E0093CDCA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B6928C8270E0093CDCA /* LoginView.swift */; };
+		FED51B6C28C82EA20093CDCA /* LoginLogoView_.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B6B28C82EA20093CDCA /* LoginLogoView_.swift */; };
+		FED51B6E28C831550093CDCA /* LoginView_.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B6D28C831550093CDCA /* LoginView_.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		B9DBF08BB74A170F81A01B2A /* Pods_CatchTableClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CatchTableClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEB2D4B728C5BD870091BA6B /* LoginViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController2.swift; sourceTree = "<group>"; };
 		FED51B6928C8270E0093CDCA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		FED51B6B28C82EA20093CDCA /* LoginLogoView_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLogoView_.swift; sourceTree = "<group>"; };
+		FED51B6D28C831550093CDCA /* LoginView_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView_.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +148,8 @@
 				FED51B6928C8270E0093CDCA /* LoginView.swift */,
 				52B4D2AD28C8285700FEB427 /* LoginHeaderView.swift */,
 				52B4D2AF28C82A5400FEB427 /* SignUpView.swift */,
+				FED51B6B28C82EA20093CDCA /* LoginLogoView_.swift */,
+				FED51B6D28C831550093CDCA /* LoginView_.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -299,7 +305,9 @@
 				52B4D28628C5B76B00FEB427 /* AppDelegate.swift in Sources */,
 				52B4D2A128C5B8B100FEB427 /* ViewModel.swift in Sources */,
 				52B4D28828C5B76B00FEB427 /* SceneDelegate.swift in Sources */,
+				FED51B6C28C82EA20093CDCA /* LoginLogoView_.swift in Sources */,
 				FED51B6A28C8270E0093CDCA /* LoginView.swift in Sources */,
+				FED51B6E28C831550093CDCA /* LoginView_.swift in Sources */,
 				FEB2D4B828C5BD870091BA6B /* LoginViewController2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
