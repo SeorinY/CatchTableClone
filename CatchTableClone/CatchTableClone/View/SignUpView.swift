@@ -16,13 +16,14 @@ protocol SignUpViewDelegate : AnyObject{
     func phoneNumLoginButtonAction()
     func inquireButtonAction()
 }
+
 class SignUpView: UIView {
     public weak var delegate : SignUpViewDelegate?
     
     private let kakaoSignUpBUtton : UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 5
-        button.backgroundColor = .systemYellow
+        button.backgroundColor = .init(red: 252/255, green: 231/255, blue: 80/255, alpha: 1)
         button.setImage(UIImage(systemName: "message.fill"), for: .normal)
         button.setTitle(" 카카오로 시작하기", for: .normal)
         button.tintColor = .black

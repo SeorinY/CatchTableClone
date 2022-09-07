@@ -17,7 +17,8 @@ class LoginHeaderView: UIView {
     }()
     private let logoLabel : UILabel = {
         let label = UILabel()
-        label.textColor = .init(red: 1, green: 0.2, blue: 0, alpha: 1)
+//        label.textColor = .init(red: 1, green: 0.2, blue: 0, alpha: 1)
+        label.textColor = .init(cgColor: CGColor(red: 252/255, green: 35/255, blue: 6/255, alpha: 1))
         label.text = "CATCH TABLE"
         label.font = .systemFont(ofSize: 30, weight: .heavy)
         return label
