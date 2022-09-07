@@ -7,12 +7,15 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>seorinY</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>kakao</string>
 				<string>1e0080a4ac6b2bd610b850a97e4cc97b</string>
 			</array>
 		</dict>
+		<dict/>
 	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
