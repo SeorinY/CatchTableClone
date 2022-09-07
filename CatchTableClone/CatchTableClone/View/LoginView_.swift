@@ -6,8 +6,17 @@
 //
 
 import UIKit
+protocol LoginVieWDelegate : AnyObject {
+    func kakaoLoginButtonPressed()
+    func appleLoginButtonPressed()
+    func naverLoginButtonPressed()
+    func questionmarkButtonPressed()
+    func regsterButtonPressed()
+    func loginButtonPressed()
+}
 
 class LoginView_: UIView {
+    weak var delegate: LoginVieWDelegate?
     private let centerStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -54,12 +63,12 @@ class LoginView_: UIView {
         button.semanticContentAttribute = .forceLeftToRight
         button.contentVerticalAlignment = .center
         button.contentHorizontalAlignment = .center
+        button.addTarget(self, action: #selector(didTapKakaoButton), for: .touchUpInside)
         return button
     }()
     
     private let appleLoginButton : UIButton = {
         let button = UIButton()
-        //        button.addTarget(self, action: #selector(appleLoginButtonPressed(_:)), for: .touchUpInside)
         
         button.layer.cornerRadius = 8
         button.setImage(UIImage(systemName: "applelogo")?.imageResize(sizeChange: CGSize(width: 20, height: 20)), for: .normal)
@@ -103,7 +112,6 @@ class LoginView_: UIView {
     
     private let naverLoginButton : UIButton = {
         let button = UIButton()
-        //        button.addTarget(self, action: #selector(naverLoginButtonPressed(_:)), for: .touchUpInside)
         
         button.setImage(UIImage(named: "naver")?.imageResize(sizeChange: CGSize(width: 27, height: 27)), for: .normal)
         button.layer.borderColor = UIColor.lightGray.cgColor
@@ -135,7 +143,7 @@ class LoginView_: UIView {
         super.init(frame: frame)
         addSubview(verticalLineView)
         addSubview(horizontalLineView)
-
+        
         addSubview(centerStackView)
         [orLabel, questionmarkButton].forEach { view in
             self.centerStackView.addArrangedSubview(view)
@@ -151,6 +159,7 @@ class LoginView_: UIView {
         addSubview(registerButton)
         addSubview(loginLabel)
         addSubview(loginButton)
+        setButtonTarget()
         setLayout()
     }
     
@@ -160,6 +169,9 @@ class LoginView_: UIView {
 }
 
 extension LoginView_ {
+    @objc func didTapKakaoButton() {
+        print("Hello world")
+    }
     func setLayout() {
         
         buttonStackView.snp.makeConstraints { make in
@@ -181,16 +193,15 @@ extension LoginView_ {
             make.height.equalTo(1)
             make.centerY.equalTo(centerStackView.snp.centerY)
         }
-
-
+        
+        
         verticalLineView.snp.makeConstraints { make in
             make.top.equalTo(centerStackView.snp.bottom).offset(45)
             make.centerX.equalToSuperview()
             make.height.equalTo(15)
             make.width.equalTo(1)
         }
-
-//
+        
         naverLoginButton.snp.makeConstraints { make in
             make.trailing.equalTo(verticalLineView.snp.centerX).offset(-35)
             make.centerY.equalTo(verticalLineView.snp.centerY)
@@ -213,5 +224,34 @@ extension LoginView_ {
             make.width.equalTo(250)
             make.height.equalTo(44)
         }
+    }
+    
+    func setButtonTarget() {
+        kakaoLoginButton.addTarget(self, action: #selector(kakaoLoginButtonTapped), for: .touchUpInside)
+        appleLoginButton.addTarget(self, action: #selector(appleLoginButtonTapped), for: .touchUpInside)
+        naverLoginButton.addTarget(self, action: #selector(naverLoginButtonTapped), for: .touchUpInside)
+        questionmarkButton.addTarget(self, action: #selector(questionmarkButtonTapped), for: .touchUpInside)
+        registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func kakaoLoginButtonTapped() {
+        print("isTapped")
+        delegate?.kakaoLoginButtonPressed()
+    }
+    @objc func appleLoginButtonTapped() {
+        delegate?.appleLoginButtonPressed()
+    }
+    @objc func naverLoginButtonTapped() {
+        delegate?.naverLoginButtonPressed()
+    }
+    @objc func questionmarkButtonTapped() {
+        delegate?.questionmarkButtonPressed()
+    }
+    @objc func registerButtonTapped() {
+        delegate?.regsterButtonPressed()
+    }
+    @objc func loginButtonTapped() {
+        delegate?.loginButtonPressed()
     }
 }

@@ -19,19 +19,24 @@ class LoginViewController2: UIViewController {
         super.viewDidLoad()
         view.addSubview(loginLogoView)
         view.addSubview(loginView)
+        loginView.delegate = self
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         loginLogoView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(15)
-            make.top.equalToSuperview().offset(200)
+            make.top.equalToSuperview()
+            make.height.equalTo(200)
+            make.trailing.equalToSuperview()
         }
         loginView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(15)
             make.trailing.equalToSuperview().offset(-15)
             make.top.equalTo(loginLogoView.snp.bottom).offset(50)
+            make.bottom.equalToSuperview()
         }
+        
 
       
     }
@@ -40,31 +45,39 @@ class LoginViewController2: UIViewController {
 
 //MARK: - Controller
 
-extension LoginViewController2 {
-//    @objc func kakaoLoginButtonPressed(_ sender : UIButton) {
-//        print("kakao")
-//        UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
-//                if let error = error {
-//                    print(error)
-//                }
-//                else {
-//                    print("loginWithKakaoAccount() success.")
-//
-//                    //do something
-//                    _ = oauthToken
-//                }
-//            }
-//    }
-//    @objc func appleLoginButtonPressed(_ sender : UIButton) {
-//        print("apple")
-//        //https://labs.brandi.co.kr/2021/04/09/chosh.html
-//
-//    }
-//    @objc func naverLoginButtonPressed(_ sender : UIButton) {
-//        
-//    }
-//    @objc func callLoginButtonPressed(_ sender : UIButton) {
-//        print("call")
-//
-//    }
+extension LoginViewController2 : LoginVieWDelegate{
+    func kakaoLoginButtonPressed() {
+        print("kakao")
+        UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+                if let error = error {
+                    print(error)
+                }
+                else {
+                    print("loginWithKakaoAccount() success.")
+
+                    //do something
+                    _ = oauthToken
+                }
+            }
+    }
+    func appleLoginButtonPressed() {
+        print("apple")
+    }
+    
+    func naverLoginButtonPressed() {
+        print("naver")
+    }
+    
+    func questionmarkButtonPressed() {
+        print("naver")
+    }
+    
+    func regsterButtonPressed() {
+        print("naver")
+    }
+    
+    func loginButtonPressed() {
+        print("naver")
+    }
+
 }
