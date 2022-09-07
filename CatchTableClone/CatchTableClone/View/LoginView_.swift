@@ -11,10 +11,10 @@ class LoginView_: UIView {
     private let centerStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.alignment = .fill
+        stackView.alignment = .center
         stackView.distribution = .fillEqually
         stackView.spacing = 2
-        stackView.backgroundColor = .systemBackground
+        stackView.backgroundColor = .white
         return stackView
     }()
     
@@ -28,14 +28,15 @@ class LoginView_: UIView {
     private let questionmarkButton : UIButton = {
         let button = UIButton()
         let buttonImage = UIImage(systemName: "questionmark.circle")?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
+        button.setImage(buttonImage, for: .normal)
         return button
     }()
     
     private let buttonStackView : UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.alignment = .center
-        stackView.distribution = .equalSpacing
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
         stackView.spacing = 10
         return stackView
     }()
@@ -132,7 +133,9 @@ class LoginView_: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        addSubview(verticalLineView)
+        addSubview(horizontalLineView)
+
         addSubview(centerStackView)
         [orLabel, questionmarkButton].forEach { view in
             self.centerStackView.addArrangedSubview(view)
@@ -144,9 +147,8 @@ class LoginView_: UIView {
             self.buttonStackView.addArrangedSubview(view)
         }
         
-        addSubview(verticalLineView)
-        addSubview(horizontalLineView)
-        
+        addSubview(naverLoginButton)
+        addSubview(registerButton)
         addSubview(loginLabel)
         addSubview(loginButton)
         setLayout()
@@ -169,7 +171,7 @@ extension LoginView_ {
         centerStackView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(buttonStackView.snp.bottom).offset(35)
-            make.width.equalTo(50)
+            make.width.equalTo(70)
         }
         
         
@@ -179,16 +181,16 @@ extension LoginView_ {
             make.height.equalTo(1)
             make.centerY.equalTo(centerStackView.snp.centerY)
         }
-        
-        
+
+
         verticalLineView.snp.makeConstraints { make in
             make.top.equalTo(centerStackView.snp.bottom).offset(45)
             make.centerX.equalToSuperview()
             make.height.equalTo(15)
             make.width.equalTo(1)
         }
-        
-        
+
+//
         naverLoginButton.snp.makeConstraints { make in
             make.trailing.equalTo(verticalLineView.snp.centerX).offset(-35)
             make.centerY.equalTo(verticalLineView.snp.centerY)
