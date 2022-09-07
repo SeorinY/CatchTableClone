@@ -9,99 +9,8 @@ import UIKit
 import SnapKit
 
 class LoginViewController1: UIViewController {
-    private let subLogoLabel : UILabel = {
-        let label = UILabel()
-        label.textColor = .gray
-        label.text = "즐거운 미식생활의 시작"
-        label.font = .systemFont(ofSize: 15)
-        return label
-    }()
-    private let logoLabel : UILabel = {
-        let label = UILabel()
-        label.textColor = .init(red: 1, green: 0.2, blue: 0, alpha: 1)
-        label.text = "CATCH TABLE"
-        label.font = .systemFont(ofSize: 30, weight: .heavy)
-        return label
-    }()
-    private let kakaoSignUpBUtton : UIButton = {
-        let button = UIButton()
-        button.layer.cornerRadius = 5
-        button.backgroundColor = .systemYellow
-        button.setImage(UIImage(systemName: "message.fill"), for: .normal)
-        button.setTitle(" 카카오로 시작하기", for: .normal)
-        button.tintColor = .black
-        button.setTitleColor( .black, for: .normal)
-        return button
-    }()
-    private let appleSignUpButton : UIButton = {
-        let button = UIButton()
-        button.layer.cornerRadius = 5
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.lightGray.cgColor
-        
-        
-        let config = UIImage.SymbolConfiguration(pointSize: 25)
-        let image = UIImage(systemName: "applelogo", withConfiguration: config)
-        button.setImage(image, for: .normal)
-        button.setTitle(" Apple로 시작하기", for: .normal)
-        button.tintColor = .black
-        button.setTitleColor( .black, for: .normal)
-        return button
-    }()
-    
-    private let orLogoLabel : UILabel = {
-        let label = UILabel()
-        label.text = "또는"
-        label.font = UIFont.systemFont(ofSize:15)
-        label.textAlignment = .center
-        label.textColor = .lightGray
-        return label
-    }()
-    private let orButton : UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "questionmark.circle"), for: .normal)
-        button.tintColor = .lightGray
-        return button
-    }()
-    private let firstLine : UIView = {
-        let line = UIView()
-        line.backgroundColor = .lightGray
-        return line
-    }()
-    private let orStackView : UIStackView = {
-        let view = UIStackView()
-        view.axis = .horizontal
-        view.distribution = .fillProportionally
-        view.backgroundColor = .white
-        view.spacing = 3
-        return view
-    }()
-    private let naverSignUpButton : UIButton = {
-        let button = UIButton()
-        button.layer.cornerRadius = 25
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.lightGray.cgColor
-        button.contentEdgeInsets = UIEdgeInsets(top: 7, left: 7, bottom: 7, right: 7)
-        let image = UIImage(named: "naver")
-        button.setImage(image, for: .normal)
-        return button
-    }()
-    private let phoneNumSignUpButton : UIButton = {
-        let button = UIButton()
-        button.layer.cornerRadius = 25
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.lightGray.cgColor
-        let config = UIImage.SymbolConfiguration(pointSize: 20)
-        let image = UIImage(systemName: "phone.fill", withConfiguration: config)
-        button.setImage(image, for: .normal)
-        button.tintColor = .black
-        return button
-    }()
-    private let secondLine : UIView = {
-        let line = UIView()
-        line.backgroundColor = .gray
-        return line
-    }()
+    private let loginHeaderView = LoginHeaderView()
+
     private let alreadySignUpLabel : UILabel = {
         let label = UILabel()
         label.text = "이미 가입하셨나요?"
@@ -136,25 +45,19 @@ class LoginViewController1: UIViewController {
         setButton()
     }
     private func setSubview(){
-        view.addSubview(subLogoLabel)
-        view.addSubview(logoLabel)
-        view.addSubview(kakaoSignUpBUtton)
-        view.addSubview(appleSignUpButton)
-        
-        view.addSubview(firstLine)
-        view.addSubview(orStackView)
-        [orLogoLabel, orButton].map{
-            orStackView.addArrangedSubview($0)
-        }
-        view.addSubview(naverSignUpButton)
-        view.addSubview(phoneNumSignUpButton)
-        view.addSubview(secondLine)
+        view.addSubview(loginHeaderView)
         view.addSubview(alreadySignUpLabel)
         view.addSubview(phoneNumLoginButton)
         view.addSubview(inquireButton)
     }
     
     private func setLayout(){
+        loginHeaderView.snp.makeConstraints({make in
+            make.leading.equalToSuperview()
+            make.top.equalToSuperview().offset(200)
+        })
+        
+        
         firstLine.snp.makeConstraints({make in
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview().offset(20)
@@ -179,17 +82,6 @@ class LoginViewController1: UIViewController {
             make.trailing.equalToSuperview().offset(-20)
             make.bottom.equalTo(appleSignUpButton.snp.top).offset(-10)
             make.height.equalTo(50)
-        })
-         
-        logoLabel.snp.makeConstraints({make in
-            make.leading.equalToSuperview().offset(20)
-            make.bottom.equalTo(kakaoSignUpBUtton.snp.top).offset(-60)
-            make.height.equalTo(40)
-        })
-        subLogoLabel.snp.makeConstraints({make in
-            make.leading.equalToSuperview().offset(20)
-            make.bottom.equalTo(logoLabel.snp.top)
-            make.height.equalTo(20)
         })
         
         naverSignUpButton.snp.makeConstraints({make in
