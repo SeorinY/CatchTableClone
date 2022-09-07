@@ -26,7 +26,6 @@ class LoginLogoView_: UIView {
     }()
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         addSubview(subLogoLabel)
         addSubview(mainLogoLabel)
     }
