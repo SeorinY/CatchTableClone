@@ -42,6 +42,7 @@
 		FEB2D4B728C5BD870091BA6B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FED51B6B28C82EA20093CDCA /* LoginLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLogoView.swift; sourceTree = "<group>"; };
 		FED51B6D28C831550093CDCA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		FED51B6F28C87FD60093CDCA /* CatchTableClone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CatchTableClone.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +78,7 @@
 		52B4D28428C5B76B00FEB427 /* CatchTableClone */ = {
 			isa = PBXGroup;
 			children = (
+				FED51B6F28C87FD60093CDCA /* CatchTableClone.entitlements */,
 				52B4D29D28C5B84600FEB427 /* Utility */,
 				52B4D29928C5B82300FEB427 /* Model */,
 				52B4D29C28C5B83C00FEB427 /* Resource */,
@@ -438,6 +440,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CatchTableClone/CatchTableClone.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FQJCX687Q4;
@@ -468,6 +471,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CatchTableClone/CatchTableClone.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FQJCX687Q4;
