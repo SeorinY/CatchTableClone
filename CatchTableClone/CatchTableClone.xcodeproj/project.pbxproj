@@ -20,6 +20,7 @@
 		52B4D2AC28C8261700FEB427 /* ConsoleLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4D2AB28C8261700FEB427 /* ConsoleLog.swift */; };
 		A2684A48FE5A8BC81BA9457C /* Pods_CatchTableClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DBF08BB74A170F81A01B2A /* Pods_CatchTableClone.framework */; };
 		FEB2D4B828C5BD870091BA6B /* LoginViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB2D4B728C5BD870091BA6B /* LoginViewController2.swift */; };
+		FED51B6A28C8270E0093CDCA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B6928C8270E0093CDCA /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		99CA209A2337CD3AFB9BDCB8 /* Pods-CatchTableClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatchTableClone.release.xcconfig"; path = "Target Support Files/Pods-CatchTableClone/Pods-CatchTableClone.release.xcconfig"; sourceTree = "<group>"; };
 		B9DBF08BB74A170F81A01B2A /* Pods_CatchTableClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CatchTableClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEB2D4B728C5BD870091BA6B /* LoginViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController2.swift; sourceTree = "<group>"; };
+		FED51B6928C8270E0093CDCA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				52B4D29C28C5B83C00FEB427 /* Resource */,
 				52B4D29B28C5B83400FEB427 /* ViewModel */,
 				52B4D29A28C5B82D00FEB427 /* Controller */,
+				52B4D29E28C5B89800FEB427 /* View */,
 				52B4D29328C5B76D00FEB427 /* Info.plist */,
 			);
 			path = CatchTableClone;
@@ -98,7 +101,6 @@
 			children = (
 				52B4D28928C5B76B00FEB427 /* LoginViewController1.swift */,
 				FEB2D4B728C5BD870091BA6B /* LoginViewController2.swift */,
-				52B4D29E28C5B89800FEB427 /* View */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				52B4D29F28C5B89F00FEB427 /* StoryBoard */,
+				FED51B6928C8270E0093CDCA /* LoginView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				52B4D28628C5B76B00FEB427 /* AppDelegate.swift in Sources */,
 				52B4D2A128C5B8B100FEB427 /* ViewModel.swift in Sources */,
 				52B4D28828C5B76B00FEB427 /* SceneDelegate.swift in Sources */,
+				FED51B6A28C8270E0093CDCA /* LoginView.swift in Sources */,
 				FEB2D4B828C5BD870091BA6B /* LoginViewController2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
