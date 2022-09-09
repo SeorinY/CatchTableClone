@@ -77,9 +77,6 @@ extension LoginViewController : LoginVieWDelegate{
         authorizationController.delegate = self
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
-//        let vc = UIViewController()
-//        vc.view.backgroundColor = .systemBackground
-//        self.present(vc, animated: true)
     }
     
     func naverLoginButtonPressed() {
@@ -94,7 +91,7 @@ extension LoginViewController : LoginVieWDelegate{
     }
     
     func regsterButtonPressed() {
-        let vc = UIViewController()
+        let vc = PhoneNumberRegisterViewController()
         vc.view.frame = view.bounds
         navigationController?.pushViewController(vc, animated: false)
     }
