@@ -59,3 +59,28 @@ extension UILabel {
         self.attributedText = attributeString
     }
 }
+
+extension UINavigationController {
+    func setBackgroundColor() {
+        navigationBar.backgroundColor = .systemBackground
+//        navigationBar.isTranslucent = true
+    }
+}
+
+extension UIViewController {
+    func navigationLayout() {
+        let backImage = UIImage(systemName: "arrow.backward")
+        self.navigationController?.navigationBar.tintColor = .black
+        self.navigationController?.navigationBar.backIndicatorImage = backImage
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backImage
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    
+    func navigationLabel(_ text: String) {
+        let registerLabel = UILabel()
+        registerLabel.text = text
+        registerLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: registerLabel)
+        self.navigationItem.leftItemsSupplementBackButton = true
+    }
+}

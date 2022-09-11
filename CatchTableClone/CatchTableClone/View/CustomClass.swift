@@ -42,6 +42,7 @@ class CheckBoxButton : UIButton {
         self.tintColor = .systemGray
         self.setTitleColor(.black, for: .normal)
         self.setTitle("  \(text)", for: .normal)
+        self.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         self.semanticContentAttribute = .forceLeftToRight
         self.contentVerticalAlignment = .center
         self.contentHorizontalAlignment = .leading

@@ -7,38 +7,36 @@
 
 import UIKit
 
-class PhoneNumberRegisterView: UIScrollView {
-    private let contentView : UIView = {
-        let view = UIView()
-        return view
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.backgroundColor = .systemBackground
-        addSubview(contentView)
-        addContentView()
+protocol RegisterCellDelegate  {
+    func cellPressed()
+}
+
+class PhoneNumberRegisterCell: UITableViewCell {
+    private let checkBoxButton = CheckBoxButton("").then{
+        $0.addTarget(self, action: #selector(didTapCell), for: .touchUpInside)
     }
     
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.accessoryType = .disclosureIndicator
+        addSubview(checkBoxButton)
+        checkBoxButton.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(30)
+            make.top.equalToSuperview().offset(3)
+            make.bottom.equalToSuperview().offset(-3)
+        }
+    
+    }
     required init?(coder: NSCoder) {
         fatalError()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        contentView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.width.equalToSuperview()
-        }
-        
+    func configure(_ text: String) {
+        checkBoxButton.setTitle(text, for: .normal)
     }
     
-    private func addContentView() {
+    @objc func didTapCell() {
         
     }
-    
-
 }
