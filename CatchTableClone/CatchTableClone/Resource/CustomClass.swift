@@ -54,6 +54,10 @@ class CheckBoxButton : UIButton {
 }
 
 class generalButton : UIButton{
+    enum buttonStyle{
+        case ready
+        case wait
+    }
     var style : buttonStyle
     
     required init(_ buttonStyle : buttonStyle){
@@ -70,17 +74,12 @@ class generalButton : UIButton{
     public func styleConfigure(_ buttonStyle : buttonStyle){
         style = buttonStyle
         if buttonStyle == .ready{
-            self.backgroundColor = UIColor(named: "buttonBackgroundColor")
-            self.setTitleColor(.secondaryLabel, for: .normal)
-        }
-        else if buttonStyle == .wait{
             self.backgroundColor = UIColor(named: "logoColor")
             self.setTitleColor(.white, for: .normal)
         }
+        else if buttonStyle == .wait{
+            self.backgroundColor = UIColor(named: "buttonBackgroundColor")
+            self.setTitleColor(.secondaryLabel, for: .normal)
+        }
     }
-}
-
-enum buttonStyle{
-    case ready
-    case wait
 }

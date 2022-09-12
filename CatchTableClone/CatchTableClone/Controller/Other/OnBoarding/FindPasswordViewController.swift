@@ -18,11 +18,11 @@ class FindPasswordViewController: UIViewController {
     }
     private let phoneNumTextField = CSTextField().then {
         $0.placeholder = "숫자만 입력해 주세요."
-        $0.textColor = .secondaryLabel
-        $0.backgroundColor = .secondarySystemBackground
+//        $0.textColor = .secondaryLabel
+//        $0.backgroundColor = .secondarySystemBackground
         $0.font = UIFont.systemFont(ofSize:15)
     }
-    private let certificationButton = UIButton().then {
+    private let certificationButton = generalButton(.wait).then {
         $0.setTitle("인증번호 요청", for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize:15)
         $0.setTitleColor(.secondaryLabel, for: .normal)
@@ -73,38 +73,5 @@ class FindPasswordViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(50)
         }
-    }
-}
-
-
-
-
-
-class FEQViewController: UIViewController {
-    private let popupView = QuestionView(frame: .zero).then {
-        $0.layer.cornerRadius = 10
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .black.withAlphaComponent(0.3)
-        view.addSubview(popupView)
-        popupView.delegate = self
-        
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        popupView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(view.height/6)
-            make.bottom.equalToSuperview().offset(-view.height/6)
-            make.leading.equalToSuperview().offset(30)
-            make.trailing.equalToSuperview().offset(-30)
-        }
-    }
-}
-extension FEQViewController : QuestionViewDelegate{
-    func didTapOkButton() {
-        dismiss(animated: false)
     }
 }

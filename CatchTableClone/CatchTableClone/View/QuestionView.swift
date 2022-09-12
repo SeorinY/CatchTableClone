@@ -22,11 +22,8 @@ class QuestionView: UIView {
         $0.backgroundColor = .clear
         $0.font = .systemFont(ofSize: 15)
     }
-    private let okButton = UIButton().then {
-        $0.backgroundColor = UIColor(red: 252.0 / 255.0, green: 35.0 / 255.0, blue: 6.0 / 255.0, alpha: 1)
+    private let okButton = generalButton(.ready).then {
         $0.setTitle("확인", for: .normal)
-        $0.setTitleColor(.white, for: .normal)
-        $0.layer.cornerRadius = 7
     }
     
     override init(frame: CGRect) {

@@ -26,11 +26,8 @@ class PhoneNumberLoginViewController: UIViewController {
         $0.titleLabel?.font = UIFont.systemFont(ofSize:15)
         $0.setTitleColor(.gray, for: .normal)
     }
-    private let loginButton = UIButton().then {
+    private let loginButton = generalButton(.wait).then {
         $0.setTitle("로그인", for: .normal)
-        $0.layer.cornerRadius = 7
-        $0.backgroundColor = .secondarySystemBackground
-        $0.setTitleColor(.secondaryLabel, for: .normal)
     }
     
     override func viewDidLoad() {
@@ -49,11 +46,9 @@ class PhoneNumberLoginViewController: UIViewController {
     }
     @objc private func chechLoginCondition(){
         if idTextField.text?.count ?? 0 < 1 || passwordTextField.text?.count ?? 0 < 6{
-            loginButton.backgroundColor = .secondarySystemBackground
-            loginButton.setTitleColor(.secondaryLabel, for: .normal)
+            loginButton.styleConfigure(.wait)
         }else{
-            loginButton.backgroundColor = .red
-            loginButton.setTitleColor(.white, for: .normal)
+            loginButton.styleConfigure(.ready)
         }
     }
     private func configureButton(){

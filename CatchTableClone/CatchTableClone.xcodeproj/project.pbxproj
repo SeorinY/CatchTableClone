@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		528E092E28CF1A8D00B7CAF1 /* FEQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E092D28CF1A8D00B7CAF1 /* FEQViewController.swift */; };
 		52B4D28628C5B76B00FEB427 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4D28528C5B76B00FEB427 /* AppDelegate.swift */; };
 		52B4D28828C5B76B00FEB427 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4D28728C5B76B00FEB427 /* SceneDelegate.swift */; };
 		52B4D28D28C5B76B00FEB427 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52B4D28B28C5B76B00FEB427 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		4D4AEC18375228CF3181ED0A /* Pods-CatchTableClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatchTableClone.debug.xcconfig"; path = "Target Support Files/Pods-CatchTableClone/Pods-CatchTableClone.debug.xcconfig"; sourceTree = "<group>"; };
+		528E092D28CF1A8D00B7CAF1 /* FEQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FEQViewController.swift; sourceTree = "<group>"; };
 		52B4D28228C5B76B00FEB427 /* CatchTableClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatchTableClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B4D28528C5B76B00FEB427 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52B4D28728C5B76B00FEB427 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				FED51B7E28C88C970093CDCA /* InquireViewController.swift */,
 				FED51B8028C88CA10093CDCA /* PhoneNumberLoginViewController.swift */,
 				FED51B8228C88CCE0093CDCA /* FindPasswordViewController.swift */,
+				528E092D28CF1A8D00B7CAF1 /* FEQViewController.swift */,
 			);
 			path = OnBoarding;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				FED7162C28C9BCE7006088BD /* CustomClass.swift in Sources */,
 				FED51B6E28C831550093CDCA /* LoginView.swift in Sources */,
 				FED51B8328C88CCE0093CDCA /* FindPasswordViewController.swift in Sources */,
+				528E092E28CF1A8D00B7CAF1 /* FEQViewController.swift in Sources */,
 				FEB2D4B828C5BD870091BA6B /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
