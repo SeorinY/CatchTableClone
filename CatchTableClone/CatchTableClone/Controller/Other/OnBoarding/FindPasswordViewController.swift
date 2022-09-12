@@ -16,19 +16,9 @@ class FindPasswordViewController: UIViewController {
         $0.text = "케치테이블 가입 시 사용한 휴대폰 번호를 입력해주세요."
         $0.font = UIFont.systemFont(ofSize:15)
     }
-    private let phoneNumTextField = CSTextField().then {
-        $0.placeholder = "숫자만 입력해 주세요."
-//        $0.textColor = .secondaryLabel
-//        $0.backgroundColor = .secondarySystemBackground
-        $0.font = UIFont.systemFont(ofSize:15)
-    }
-    private let certificationButton = generalButton(.wait).then {
-        $0.setTitle("인증번호 요청", for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize:15)
-        $0.setTitleColor(.secondaryLabel, for: .normal)
-        $0.backgroundColor = .lightGray
-        $0.layer.cornerRadius = 7
-    }
+    private let phoneNumTextField = CSTextField("숫자만 입력해 주세요.")
+    
+    private let certificationButton = generalButton(.wait, "인증번호 요청")
     
     private let changePasswordButton = UIButton().then {
         $0.setTitle("비밀번호 변경", for: .normal)

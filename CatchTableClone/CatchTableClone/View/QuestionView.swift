@@ -22,9 +22,7 @@ class QuestionView: UIView {
         $0.backgroundColor = .clear
         $0.font = .systemFont(ofSize: 15)
     }
-    private let okButton = generalButton(.ready).then {
-        $0.setTitle("확인", for: .normal)
-    }
+    private let okButton = generalButton(.ready, "확인")
     
     override init(frame: CGRect) {
         super.init(frame: frame)

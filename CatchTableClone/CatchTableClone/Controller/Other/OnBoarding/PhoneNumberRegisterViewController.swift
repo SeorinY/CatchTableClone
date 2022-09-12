@@ -16,69 +16,52 @@ class PhoneNumberRegisterViewController: UIViewController {
     private let contentView = UIView()
     private let nameLabel = UILabel().then {
         $0.text = "이름 *"
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.font = Font.generalFont
         $0.changeTextColor("*")
     }
     
-    private let nameTextField = CSTextField().then{
-        $0.placeholder = "  이름을 입력해 주세요."
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-    }
+    private let nameTextField = CSTextField("  이름을 입력해 주세요.")
+    
     private let nameWarningLabel = UILabel().then {
         $0.text = "레스토랑을 예약할 때 이름이므로 꼭 실명을 사용해 주세요."
-        $0.font = UIFont.systemFont(ofSize: 12, weight: .light)
+        $0.font = Font.lightFont
     }
     
     private let phoneNumberLabel = UILabel().then {
         $0.text = "휴대폰 번호 *"
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.font = Font.generalFont
         $0.changeTextColor("*")
     }
     private let questionmarkButton = UIButton().then{
         let buttonImage = UIImage(systemName: "questionmark.circle")?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
         $0.setImage(buttonImage, for: .normal)
     }
-    private let phoneNumberTextField = CSTextField().then{
-        $0.placeholder = "  숫자만 입력해 주세요."
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-    }
-    private let phoneNumberButton = UIButton().then{
-        $0.setTitle("인증번호 요청", for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        $0.setTitleColor(.systemGray, for: .normal)
-        $0.backgroundColor = UIColor(red: 238.0 / 255.0, green: 238.0 / 255.0, blue: 238.0 / 255.0, alpha: 1)
-        $0.layer.cornerRadius = 7
-    }
+    private let phoneNumberTextField = CSTextField("  숫자만 입력해 주세요.")
+    private let phoneNumberButton = generalButton(.wait, "인증번호요청")
     
     private let passWordLabel = UILabel().then {
         $0.text = "비밀 번호 *"
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.font = Font.generalFont
         $0.changeTextColor("*")
     }
-    private let passwordTextField = CSTextField().then{
-        $0.placeholder = "  비밀번호를 입력해 주세요."
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-    }
-    private let passwordCheckTextField = CSTextField().then{
-        $0.placeholder = "  비밀번호를 다시 한번 입력해 주세요."
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-    }
+    private let passwordTextField = CSTextField("  비밀번호를 입력해 주세요.")
+    
+    private let passwordCheckTextField = CSTextField("  비밀번호를 다시 한번 입력해 주세요.")
+    
     private let passwordWarningLabel = UILabel().then {
         $0.text = "6자리 이상으로 설정해 주세요."
-        $0.font = UIFont.systemFont(ofSize: 12, weight: .light)
+        $0.font = Font.lightFont
 
     }
     private let nickNameLabel = UILabel().then {
         $0.text = "닉네임 (선택)"
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.font = Font.generalFont
     }
-    private let nickNameTextField = CSTextField().then {
-        $0.placeholder = "  닉네임을 입력해 주세요."
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-    }
+    
+    private let nickNameTextField = CSTextField("  닉네임을 입력해 주세요.")
     private let phone_linkLabel = UILabel().then {
         $0.text = "전화-링크 예약 앱에 연동하기 (선택)"
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.font = Font.generalFont
     }
     
     private let seletAllButton = CheckBoxButton("이용자 약관 전체 동의").then{

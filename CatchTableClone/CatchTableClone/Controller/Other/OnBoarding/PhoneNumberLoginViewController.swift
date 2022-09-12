@@ -11,14 +11,8 @@ import Then
 
 class PhoneNumberLoginViewController: UIViewController {
     private let logoView = LoginLogoView(frame: .zero)
-    private let idTextField = UITextField().then {
-        $0.placeholder = "휴대폰 번호 or 닉네임"
-        $0.returnKeyType = .default
-    }
-    private let passwordTextField = UITextField().then {
-        $0.placeholder = "비밀번호"
-        $0.returnKeyType = .default
-    }
+    private let idTextField = CSTextField("휴대폰 번호 or 닉네임")
+    private let passwordTextField = CSTextField("비밀번호")
     
     private let findPasswordButton = UIButton().then {
         $0.setTitle("비밀번호를 잊어버리셨나요?", for: .normal)
@@ -26,9 +20,7 @@ class PhoneNumberLoginViewController: UIViewController {
         $0.titleLabel?.font = UIFont.systemFont(ofSize:15)
         $0.setTitleColor(.gray, for: .normal)
     }
-    private let loginButton = generalButton(.wait).then {
-        $0.setTitle("로그인", for: .normal)
-    }
+    private let loginButton = generalButton(.wait, "로그인")
     
     override func viewDidLoad() {
         super.viewDidLoad()

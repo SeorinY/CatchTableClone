@@ -9,10 +9,12 @@ import UIKit
 import SnapKit
 
 class CSTextField: UITextField {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    required init(_ placeHolder: String, _ returnType: UIReturnKeyType = .default) {
+        super.init(frame: .zero)
+        self.placeholder = placeHolder
         self.backgroundColor = UIColor(red: 247.0 / 255.0, green: 247.0 / 255.0, blue: 247.0 / 255.0, alpha: 1)
         self.layer.cornerRadius = 8
+        self.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
     
     required init?(coder: NSCoder) {
@@ -41,7 +43,7 @@ class CheckBoxButton : UIButton {
         self.tintColor = .systemGray
         self.setTitleColor(.black, for: .normal)
         self.setTitle("  \(text)", for: .normal)
-        self.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        self.titleLabel?.font = Font.generalFont
         self.semanticContentAttribute = .forceLeftToRight
         self.contentVerticalAlignment = .center
         self.contentHorizontalAlignment = .leading
@@ -59,10 +61,12 @@ class generalButton : UIButton{
         case wait
     }
     var style : buttonStyle
-    
-    required init(_ buttonStyle : buttonStyle){
+    required init(_ buttonStyle : buttonStyle, _ text: String){
         style = buttonStyle
         super.init(frame: .zero)
+        self.titleLabel?.font = Font.generalFont
+        self.setTitleColor(.systemGray, for: .normal)
+        self.setTitle(text, for: .normal)
         self.styleConfigure(buttonStyle)
         layer.cornerRadius = 8
     }
@@ -83,3 +87,4 @@ class generalButton : UIButton{
         }
     }
 }
+
