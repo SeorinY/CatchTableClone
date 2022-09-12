@@ -39,11 +39,11 @@ class QuestionView: UIView {
     private func configureFeq(){
         addSubview(feqLabel)
         addSubview(feqTextView)
-        for x in 0..<FEQ.list.count{
+        for x in 0..<Message.Feq.count{
             feqTextView.text.append("Q. ")
-            feqTextView.text.append(FEQ.list[x].question)
+            feqTextView.text.append(Message.Feq[x].question)
             feqTextView.text.append("A. ")
-            feqTextView.text.append(FEQ.list[x].enswer)
+            feqTextView.text.append(Message.Feq[x].enswer)
             feqTextView.text.append("\n")
         }
     }

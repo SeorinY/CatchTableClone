@@ -68,7 +68,7 @@ extension UINavigationController {
 }
 
 extension UIViewController {
-    func navigationLayout() {
+    func navigationBackBtnLayout() {
         let backImage = UIImage(systemName: "arrow.backward")
         self.navigationController?.navigationBar.tintColor = .black
         self.navigationController?.navigationBar.backIndicatorImage = backImage

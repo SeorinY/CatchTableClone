@@ -10,14 +10,6 @@ import Then
 import SnapKit
 
 class PhoneNumberRegisterViewController: UIViewController {
-    private let checkBoxItem = [
-        "  [필수] 캐치테이블 이용약간 동의",
-        "  [필수] 개인정보 수집 및 이용 약관 동의",
-        "  [필수] 개인정보 제3자 제공 동의",
-        "  [선택] 개인정도 제공 동의",
-        "  [선택] 이벤트 알림 서비스 동의"
-    ]
-    
     private let registerScrollView = UIScrollView().then{
         $0.backgroundColor = .systemBackground
     }
@@ -134,13 +126,13 @@ class PhoneNumberRegisterViewController: UIViewController {
 
 extension PhoneNumberRegisterViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return checkBoxItem.count
+        return Message.checkBoxItem.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = checkBoxTableView.dequeueReusableCell(withIdentifier: "checkBoxCell", for: indexPath) as! PhoneNumberRegisterCell
         cell.accessoryType = .disclosureIndicator
-        cell.configure(checkBoxItem[indexPath.row])
+        cell.configure(Message.checkBoxItem[indexPath.row])
         return cell
     }
 }

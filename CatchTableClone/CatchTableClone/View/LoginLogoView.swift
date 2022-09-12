@@ -20,7 +20,7 @@ class LoginLogoView: UIView {
         let label = UILabel()
         label.text = "CATCH TABLE"
         label.font = UIFont.systemFont(ofSize: 30, weight: .heavy)
-        label.textColor = UIColor(red: 252.0 / 255.0, green: 35.0 / 255.0, blue: 6.0 / 255.0, alpha: 1)
+        label.textColor = UIColor(named: "logoColor")
         
         return label
     }()

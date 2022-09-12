@@ -49,13 +49,9 @@ class PhoneNumberLoginViewController: UIViewController {
     }
     @objc private func chechLoginCondition(){
         if idTextField.text?.count ?? 0 < 1 || passwordTextField.text?.count ?? 0 < 6{
-            DEBUG_LOG(idTextField.text)
-            DEBUG_LOG(passwordTextField.text)
             loginButton.backgroundColor = .secondarySystemBackground
             loginButton.setTitleColor(.secondaryLabel, for: .normal)
         }else{
-            DEBUG_LOG(idTextField.text)
-            DEBUG_LOG(passwordTextField.text)
             loginButton.backgroundColor = .red
             loginButton.setTitleColor(.white, for: .normal)
         }

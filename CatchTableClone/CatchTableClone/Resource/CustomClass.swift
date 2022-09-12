@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 class CSTextField: UITextField {
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor(red: 247.0 / 255.0, green: 247.0 / 255.0, blue: 247.0 / 255.0, alpha: 1)
@@ -52,4 +51,36 @@ class CheckBoxButton : UIButton {
     }
     
     //    button.backgroundColor = UIColor(red: 253.0 / 255.0, green: 227.0 / 255.0, blue: 10.0 / 255.0, alpha: 1)
+}
+
+class generalButton : UIButton{
+    var style : buttonStyle
+    
+    required init(_ buttonStyle : buttonStyle){
+        style = buttonStyle
+        super.init(frame: .zero)
+        self.styleConfigure(buttonStyle)
+        layer.cornerRadius = 8
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    public func styleConfigure(_ buttonStyle : buttonStyle){
+        style = buttonStyle
+        if buttonStyle == .ready{
+            self.backgroundColor = UIColor(named: "buttonBackgroundColor")
+            self.setTitleColor(.secondaryLabel, for: .normal)
+        }
+        else if buttonStyle == .wait{
+            self.backgroundColor = UIColor(named: "logoColor")
+            self.setTitleColor(.white, for: .normal)
+        }
+    }
+}
+
+enum buttonStyle{
+    case ready
+    case wait
 }

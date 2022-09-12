@@ -25,12 +25,13 @@ class LoginViewController: UIViewController{
         super.viewDidLoad()
         view.addSubview(loginLogoView)
         view.addSubview(loginView)
+        self.setLayout()
         loginView.delegate = self
         naverLoginInstance?.delegate = self
+        
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    func setLayout() {
         loginLogoView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(15)
             make.top.equalToSuperview()
@@ -43,9 +44,6 @@ class LoginViewController: UIViewController{
             make.top.equalTo(loginLogoView.snp.bottom).offset(50)
             make.bottom.equalToSuperview()
         }
-        
-
-      
     }
 }
 
@@ -90,7 +88,7 @@ extension LoginViewController : LoginVieWDelegate{
     }
     
     func regsterButtonPressed() {
-        navigationLayout()
+        navigationBackBtnLayout()
         let vc = PhoneNumberRegisterViewController()
         vc.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(vc, animated: false)
@@ -172,16 +170,6 @@ extension LoginViewController : NaverThirdPartyLoginConnectionDelegate{
                           let profile = resultJson["profile_image"] as? String ?? ""
                           let email = resultJson["email"] as? String ?? ""
                           let nickName = resultJson["nickname"] as? String ?? ""
-
-                          print("네이버 로그인 이름 ",name)
-                          print("네이버 로그인 아이디 ",id)
-                          print("네이버 로그인 핸드폰 ",phone)
-                          print("네이버 로그인 성별 ",gender)
-                          print("네이버 로그인 생년 ",birthyear)
-                          print("네이버 로그인 생일 ",birthday)
-                          print("네이버 로그인 프로필사진 ",profile)
-                          print("네이버 로그인 이메일 ",email)
-                          print("네이버 로그인 닉네임 ",nickName)
                       }
                       else{
                           //실패
