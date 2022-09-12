@@ -26,7 +26,6 @@ class LoginViewController: UIViewController{
         view.addSubview(loginLogoView)
         view.addSubview(loginView)
         loginView.delegate = self
-
         naverLoginInstance?.delegate = self
     }
     
@@ -77,9 +76,6 @@ extension LoginViewController : LoginVieWDelegate{
         authorizationController.delegate = self
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
-//        let vc = UIViewController()
-//        vc.view.backgroundColor = .systemBackground
-//        self.present(vc, animated: true)
     }
     
     func naverLoginButtonPressed() {
@@ -94,8 +90,9 @@ extension LoginViewController : LoginVieWDelegate{
     }
     
     func regsterButtonPressed() {
-        let vc = UIViewController()
-        vc.view.frame = view.bounds
+        navigationLayout()
+        let vc = PhoneNumberRegisterViewController()
+        vc.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(vc, animated: false)
     }
     

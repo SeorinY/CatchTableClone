@@ -56,10 +56,10 @@ class LoginView: UIView {
         button.layer.cornerRadius = 8
         button.setImage(UIImage(systemName: "message.fill"), for: .normal)
         button.backgroundColor = UIColor(red: 253.0 / 255.0, green: 227.0 / 255.0, blue: 10.0 / 255.0, alpha: 1)
-        
+
         button.tintColor = .black
         button.setTitle("  카카오로 시작하기", for: .normal)
-        button.setTitleColor(.secondaryLabel, for: .normal)
+        button.setTitleColor(.black, for: .normal)
         button.semanticContentAttribute = .forceLeftToRight
         button.contentVerticalAlignment = .center
         button.contentHorizontalAlignment = .center
@@ -73,9 +73,9 @@ class LoginView: UIView {
         button.layer.cornerRadius = 8
         button.setImage(UIImage(systemName: "applelogo")?.imageResize(sizeChange: CGSize(width: 20, height: 20)), for: .normal)
         
-        button.tintColor = .label
+        button.tintColor = .black
         button.setTitle("  Apple로 시작하기", for: .normal)
-        button.setTitleColor(.secondaryLabel, for: .normal)
+        button.setTitleColor(.black, for: .normal)
         button.semanticContentAttribute = .forceLeftToRight
         button.contentVerticalAlignment = .center
         button.contentHorizontalAlignment = .center
@@ -236,7 +236,6 @@ extension LoginView {
     }
     
     @objc func kakaoLoginButtonTapped() {
-        print("isTapped")
         delegate?.kakaoLoginButtonPressed()
     }
     @objc func appleLoginButtonTapped() {
