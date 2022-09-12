@@ -7,6 +7,7 @@ target 'CatchTableClone' do
 
   # Pods for CatchTableClone
   pod  'SnapKit', '~> 5.0.0'
+  pod 'IQKeyboardManagerSwift'
 
   #kakao login
   pod 'KakaoSDKCommon'  # 필수 요소를 담은 공통 모듈

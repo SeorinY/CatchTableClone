@@ -8,6 +8,8 @@
 import UIKit
 import KakaoSDKCommon
 import NaverThirdPartyLogin
+import IQKeyboardManagerSwift
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         KakaoSDK.initSDK(appKey: "1e0080a4ac6b2bd610b850a97e4cc97b")
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = false
         
         application.registerForRemoteNotifications()
         let instance = NaverThirdPartyLoginConnection.getSharedInstance()
@@ -27,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         instance?.consumerKey = "rhn7U9xnOKhE7hkqLSC8" //클라이언트 아이디
         instance?.consumerSecret = "ogfYguK7C3" //시크릿 아이디
         instance?.appName = "CatchTableClone" //앱이름
-        
+
 
         return true
     }
