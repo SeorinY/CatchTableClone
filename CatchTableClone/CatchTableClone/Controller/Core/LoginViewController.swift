@@ -84,8 +84,8 @@ extension LoginViewController : LoginVieWDelegate{
     }
     
     func questionmarkButtonPressed() {
-        let vc = UIViewController()
-        vc.view.backgroundColor = .systemBackground
+        let vc = FEQViewController()
+        vc.modalPresentationStyle = .overCurrentContext
         self.present(vc, animated: false)
     }
     
@@ -97,11 +97,12 @@ extension LoginViewController : LoginVieWDelegate{
     }
     
     func loginButtonPressed() {
-        let vc = UIViewController()
-        vc.view.frame = view.bounds
+        let vc = PhoneNumberLoginViewController()
         navigationController?.pushViewController(vc, animated: false)
     }
-
+    func inquireButtonPressed() {
+        DEBUG_LOG("pressed!")
+    }
 }
 
 
@@ -134,8 +135,8 @@ extension LoginViewController : ASAuthorizationControllerPresentationContextProv
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // Handle error.
     }
-    
 }
+// MARK: - Naver Login
 extension LoginViewController : NaverThirdPartyLoginConnectionDelegate{
     func naverLoginPaser() {
               guard let accessToken = naverLoginInstance?.isValidAccessTokenExpireTimeNow() else { return }

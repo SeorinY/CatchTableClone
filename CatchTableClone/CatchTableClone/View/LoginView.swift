@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Then
+
 protocol LoginVieWDelegate : AnyObject {
     func kakaoLoginButtonPressed()
     func appleLoginButtonPressed()
@@ -13,6 +15,7 @@ protocol LoginVieWDelegate : AnyObject {
     func questionmarkButtonPressed()
     func regsterButtonPressed()
     func loginButtonPressed()
+    func inquireButtonPressed()
 }
 
 class LoginView: UIView {
@@ -52,7 +55,6 @@ class LoginView: UIView {
     
     private let kakaoLoginButton : UIButton = {
         let button = UIButton()
-        //        button.addTarget(self, action: #selector(kakaoLoginButtonPressed(_:)), for: .touchUpInside)
         button.layer.cornerRadius = 8
         button.setImage(UIImage(systemName: "message.fill"), for: .normal)
         button.backgroundColor = UIColor(red: 253.0 / 255.0, green: 227.0 / 255.0, blue: 10.0 / 255.0, alpha: 1)
@@ -63,7 +65,6 @@ class LoginView: UIView {
         button.semanticContentAttribute = .forceLeftToRight
         button.contentVerticalAlignment = .center
         button.contentHorizontalAlignment = .center
-        button.addTarget(self, action: #selector(didTapKakaoButton), for: .touchUpInside)
         return button
     }()
     
@@ -100,8 +101,6 @@ class LoginView: UIView {
     
     private let registerButton : UIButton = {
         let button = UIButton()
-        //        button.addTarget(self, action: #selector(callLoginButtonPressed(_:)), for: .touchUpInside)
-        
         button.layer.cornerRadius = 22
         button.layer.borderColor = UIColor.lightGray.cgColor
         button.layer.borderWidth = 1
@@ -139,6 +138,13 @@ class LoginView: UIView {
         return button
     }()
     
+    private let inquireButton = UIButton().then {
+        $0.setTitle("회원 가입 문의", for: .normal)
+        $0.titleLabel?.attributedText = NSAttributedString(string: ".", attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
+        $0.titleLabel?.font = UIFont.systemFont(ofSize:15)
+        $0.setTitleColor(.gray, for: .normal)
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(verticalLineView)
@@ -159,6 +165,7 @@ class LoginView: UIView {
         addSubview(registerButton)
         addSubview(loginLabel)
         addSubview(loginButton)
+        addSubview(inquireButton)
         setButtonTarget()
         setLayout()
     }
@@ -169,11 +176,7 @@ class LoginView: UIView {
 }
 
 extension LoginView {
-    @objc func didTapKakaoButton() {
-        print("Hello world")
-    }
     func setLayout() {
-        
         buttonStackView.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
@@ -224,6 +227,11 @@ extension LoginView {
             make.width.equalTo(250)
             make.height.equalTo(44)
         }
+        inquireButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(loginButton.snp.bottom).offset(100)
+            make.height.equalTo(15)
+        }
     }
     
     func setButtonTarget() {
@@ -233,6 +241,7 @@ extension LoginView {
         questionmarkButton.addTarget(self, action: #selector(questionmarkButtonTapped), for: .touchUpInside)
         registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        inquireButton.addTarget(self, action: #selector(inquireButtonTapped), for: .touchUpInside)
     }
     
     @objc func kakaoLoginButtonTapped() {
@@ -252,5 +261,8 @@ extension LoginView {
     }
     @objc func loginButtonTapped() {
         delegate?.loginButtonPressed()
+    }
+    @objc func inquireButtonTapped(){
+        delegate?.inquireButtonPressed()
     }
 }
