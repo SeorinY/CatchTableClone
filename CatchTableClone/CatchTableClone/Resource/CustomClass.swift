@@ -1,10 +1,3 @@
-//
-//  CSTextField.swift
-//  CatchTableClone
-//
-//  Created by jung on 2022/09/08.
-//
-
 import UIKit
 import SnapKit
 
@@ -31,6 +24,47 @@ class CSTextField: UITextField {
     }
 }
 
+class underLineLoginTextField : UITextField{
+    let line = UIView()
+    required init(_ placehorder: String) {
+        super.init(frame: .zero)
+        self.placeholder = placehorder
+        self.returnKeyType = .default
+        lineConfigure(true)
+        addSubview(line)
+        line.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.height.equalTo(1)
+        }
+    }
+    public func lineConfigure(_ empty : Bool){
+        if empty == true{ line.backgroundColor = .secondarySystemBackground }
+        else{ line.backgroundColor = .black }
+    }
+    required init?(coder: NSCoder) {fatalError("init(coder:) has not been implemented")}
+    
+    private var eyeButton : UIButton?
+    public func buttonConfigure(){
+        eyeButton = UIButton()
+        eyeButton?.showsTouchWhenHighlighted = true
+        eyeButton?.tintColor = .systemGray4
+        rightViewMode = .always
+        rightView = eyeButton
+        eyeButton?.addTarget(self, action: #selector(didTapEyeButton), for: .touchUpInside)
+
+        isSecureTextEntry = true
+        eyeButton?.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+    }
+    @objc func didTapEyeButton(){
+        isSecureTextEntry.toggle()
+        if isSecureTextEntry == true{
+            eyeButton?.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        }else{
+            eyeButton?.setImage(UIImage(systemName: "eye"), for: .normal)
+        }
+    }
+}
 class CheckBoxButton : UIButton {
     let buttonText: String
     required init(_ text: String) {
@@ -51,8 +85,6 @@ class CheckBoxButton : UIButton {
     required init?(coder: NSCoder) {
         fatalError()
     }
-    
-    //    button.backgroundColor = UIColor(red: 253.0 / 255.0, green: 227.0 / 255.0, blue: 10.0 / 255.0, alpha: 1)
 }
 
 class generalButton : UIButton{

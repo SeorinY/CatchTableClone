@@ -11,8 +11,11 @@ import Then
 
 class PhoneNumberLoginViewController: UIViewController {
     private let logoView = LoginLogoView(frame: .zero)
-    private let idTextField = CSTextField("휴대폰 번호 or 닉네임")
-    private let passwordTextField = CSTextField("비밀번호")
+    private let idTextField = underLineLoginTextField("휴대폰 번호 or 닉네임")
+    
+    private let passwordTextField = underLineLoginTextField("비밀번호").then {
+        $0.buttonConfigure()
+    }
     
     private let findPasswordButton = UIButton().then {
         $0.setTitle("비밀번호를 잊어버리셨나요?", for: .normal)
@@ -37,11 +40,13 @@ class PhoneNumberLoginViewController: UIViewController {
         idTextField.becomeFirstResponder()
     }
     @objc private func chechLoginCondition(){
-        if idTextField.text?.count ?? 0 < 1 || passwordTextField.text?.count ?? 0 < 6{
-            loginButton.styleConfigure(.wait)
-        }else{
-            loginButton.styleConfigure(.ready)
-        }
+        if idTextField.text?.count ?? 0 > 0{ idTextField.lineConfigure(false) }
+        else{ idTextField.lineConfigure(true) }
+        if passwordTextField.text?.count ?? 0 > 0{ passwordTextField.lineConfigure(false) }
+        else{ passwordTextField.lineConfigure(true) }
+        
+        if idTextField.text?.count ?? 0 < 1 || passwordTextField.text?.count ?? 0 < 6{ loginButton.styleConfigure(.wait) }
+        else{ loginButton.styleConfigure(.ready) }
     }
     private func configureButton(){
         view.addSubview(findPasswordButton)
@@ -50,6 +55,7 @@ class PhoneNumberLoginViewController: UIViewController {
         loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
     }
     @objc private func didTapFindPasswordButton(){
+        navigationBackBtnLayout()
         navigationController?.pushViewController(FindPasswordViewController(), animated: false)
     }
     @objc private func didTapLoginButton(){
@@ -57,6 +63,7 @@ class PhoneNumberLoginViewController: UIViewController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         logoView.snp.makeConstraints { make in
             make.bottom.equalToSuperview().dividedBy(2).offset(-50)
             make.top.equalToSuperview()

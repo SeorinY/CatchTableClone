@@ -28,7 +28,6 @@ class LoginViewController: UIViewController{
         self.setLayout()
         loginView.delegate = self
         naverLoginInstance?.delegate = self
-        
     }
     
     func setLayout() {
@@ -95,11 +94,14 @@ extension LoginViewController : LoginVieWDelegate{
     }
     
     func loginButtonPressed() {
+        navigationBackBtnLayout()
         let vc = PhoneNumberLoginViewController()
         navigationController?.pushViewController(vc, animated: false)
     }
     func inquireButtonPressed() {
-        DEBUG_LOG("pressed!")
+        navigationBackBtnLayout()
+        let vc = InquireViewController()
+        navigationController?.pushViewController(vc, animated: false)
     }
 }
 
