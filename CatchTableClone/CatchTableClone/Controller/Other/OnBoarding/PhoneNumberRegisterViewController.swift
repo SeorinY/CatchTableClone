@@ -36,7 +36,7 @@ class PhoneNumberRegisterViewController: UIViewController {
         let buttonImage = UIImage(systemName: "questionmark.circle")?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
         $0.setImage(buttonImage, for: .normal)
     }
-    private let phoneNumberTextField = CSTextField("  숫자만 입력해 주세요.")
+    private let phoneNumberTextField = CSTextField("  숫자만 입력해 주세요.", .default, .numberPad)
     private let phoneNumberButton = generalButton(.wait, "인증번호요청")
     
     private let passWordLabel = UILabel().then {
@@ -51,7 +51,7 @@ class PhoneNumberRegisterViewController: UIViewController {
     private let passwordWarningLabel = UILabel().then {
         $0.text = "6자리 이상으로 설정해 주세요."
         $0.font = Font.lightFont
-
+        
     }
     private let nickNameLabel = UILabel().then {
         $0.text = "닉네임 (선택)"
@@ -68,19 +68,25 @@ class PhoneNumberRegisterViewController: UIViewController {
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
     }
     private let phone_linkButton = CheckBoxButton("연동하기")
-
+    
     private let horizontalLine = UIView().then{
         $0.backgroundColor = UIColor(red: 238.0 / 255.0, green: 238.0 / 255.0, blue: 238.0 / 255.0, alpha: 1)
     }
     private let checkBoxTableView = UITableView().then {
         $0.separatorStyle = .none
         $0.register(PhoneNumberRegisterCell.self, forCellReuseIdentifier: "checkBoxCell")
-        $0.allowsSelection = false
+        //        $0.allowsSelection = false
+        $0.allowsMultipleSelection = true
     }
-    
+//    private var
     private let pushAlarmCheckBoxButton = CheckBoxButton(" 푸시 알림")
     private let SMSCheckBoxButton = CheckBoxButton(" SMS수신")
     private let emailCheckBoxButton = CheckBoxButton(" 이메일 수신")
+    private var tableViewCheckBoxCount = 0
+    private var alarmCheckBoxCount = 0
+
+    private let maxAlarmCheckBoxCount = 3
+    private let maxTableViewCheckBoxCount = 5
     
     private let checkBoxStackView = UIStackView().then {
         $0.axis = .horizontal
@@ -91,33 +97,144 @@ class PhoneNumberRegisterViewController: UIViewController {
     
     private let startButton = UIButton().then {
         $0.setTitle("시작하기", for: .normal)
-        $0.backgroundColor = UIColor(red: 252.0 / 255.0, green: 36.0 / 255.0, blue: 6.0 / 255.0, alpha: 1)
+        $0.backgroundColor = UIColor(named: "logoColor")
         $0.layer.cornerRadius = 8
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         checkBoxTableView.delegate = self
         checkBoxTableView.dataSource = self
         navigationLabel("회원가입")
+        addAction()
         self.setUI()
         self.setLayout()
     }
     
+    
 }
 
 extension PhoneNumberRegisterViewController : UITableViewDelegate, UITableViewDataSource {
+
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Message.checkBoxItem.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = checkBoxTableView.dequeueReusableCell(withIdentifier: "checkBoxCell", for: indexPath) as! PhoneNumberRegisterCell
-        cell.accessoryType = .disclosureIndicator
         cell.configure(Message.checkBoxItem[indexPath.row])
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        checkBoxTableView.deselectRow(at: indexPath, animated: false)
+        let cell = checkBoxTableView.cellForRow(at: indexPath) as! PhoneNumberRegisterCell
+        cell.pressedButton()
+        
+        if indexPath.row == 4 {
+            pushAlarmCheckBoxButton.styleConfigure(cell.checkBoxState)
+            SMSCheckBoxButton.styleConfigure(cell.checkBoxState)
+            emailCheckBoxButton.styleConfigure(cell.checkBoxState)
+            if cell.checkBoxState == .unCheck {
+                alarmCheckBoxCount = 0
+            } else {
+                alarmCheckBoxCount = maxAlarmCheckBoxCount
+            }
+        }
+//        var isAlarmSet: Bool = indexPath.row == 4 ? true : false
+
+        if cell.checkBoxState == .unCheck {
+            tableViewCheckBoxCount = tableViewCheckBoxCount - 1
+        } else {
+            tableViewCheckBoxCount = tableViewCheckBoxCount + 1
+        }
+
+        if tableViewCheckBoxCount == maxTableViewCheckBoxCount {
+            seletAllButton.styleConfigure(.check)
+        } else {
+            seletAllButton.styleConfigure(.unCheck)
+        }
+    }
+}
+
+//MARK: action
+
+extension PhoneNumberRegisterViewController {
+    func addAction() {
+        phoneNumberTextField.addTarget(self, action: #selector(canSendCertification), for: .editingChanged)
+        phone_linkButton.addTarget(self, action: #selector(phone_linkButtonPressed), for: .touchUpInside)
+        questionmarkButton.addTarget(self, action: #selector(questionmarkButtonPressed), for: .touchUpInside)
+        seletAllButton.addTarget(self, action: #selector(selectAllPresserd), for: .touchUpInside)
+        startButton.addTarget(self, action: #selector(startButtonPressed), for: .touchUpInside)
+        pushAlarmCheckBoxButton.addTarget(self, action: #selector(alarmCheckBoxButtonPressed), for: .touchUpInside)
+        SMSCheckBoxButton.addTarget(self, action: #selector(alarmCheckBoxButtonPressed), for: .touchUpInside)
+        emailCheckBoxButton.addTarget(self, action: #selector(alarmCheckBoxButtonPressed), for: .touchUpInside)
+    }
+    
+    @objc private func canSendCertification(){
+        if phoneNumberTextField.text?.count ?? 0 < 10{
+            phoneNumberButton.styleConfigure(.wait)
+        }else{
+            phoneNumberButton.styleConfigure(.ready)
+        }
+    }
+    
+    @objc func questionmarkButtonPressed() {
+        print("pressed")
+    }
+    
+    @objc private func phone_linkButtonPressed() {
+        let indexPath = IndexPath(row: 3, section: 0)
+        phone_linkButton.didClickButton()
+        let cell = checkBoxTableView.cellForRow(at: indexPath) as! PhoneNumberRegisterCell
+        cell.buttonCheck(phone_linkButton.style)
+    }
+    
+    @objc func selectAllPresserd(){
+        seletAllButton.didClickButton()
+       
+        let checkBoxStyle = seletAllButton.style
+        
+        if checkBoxStyle == .unCheck {
+            alarmCheckBoxCount = 0
+            tableViewCheckBoxCount = 0
+        } else {
+            alarmCheckBoxCount = maxAlarmCheckBoxCount
+            tableViewCheckBoxCount = maxTableViewCheckBoxCount
+        }
+        SMSCheckBoxButton.styleConfigure(checkBoxStyle)
+        emailCheckBoxButton.styleConfigure(checkBoxStyle)
+        pushAlarmCheckBoxButton.styleConfigure(checkBoxStyle)
+
+        for section in 0..<checkBoxTableView.numberOfSections {
+                for row in 0..<checkBoxTableView.numberOfRows(inSection: section) {
+                    let cell = checkBoxTableView.cellForRow(at: [section,row]) as! PhoneNumberRegisterCell
+                    cell.buttonCheck(checkBoxStyle)
+                }
+            }
+    }
+    @objc func startButtonPressed() {
+        print("start")
+    }
+    
+    @objc func alarmCheckBoxButtonPressed(_ sender: CheckBoxButton) {
+        sender.didClickButton()
+        if(sender.style == .unCheck) {
+            alarmCheckBoxCount = alarmCheckBoxCount - 1
+        } else {
+            alarmCheckBoxCount = alarmCheckBoxCount + 1
+        }
+        
+        let indexPath = IndexPath(row: 4, section: 0)
+        let cell = checkBoxTableView.cellForRow(at: indexPath) as! PhoneNumberRegisterCell
+        if alarmCheckBoxCount == maxAlarmCheckBoxCount {
+            cell.buttonCheck(.check)
+        } else {
+            cell.buttonCheck(.unCheck)
+        }
+    }
+   
 }
 
 private extension PhoneNumberRegisterViewController {
@@ -147,7 +264,7 @@ private extension PhoneNumberRegisterViewController {
         [pushAlarmCheckBoxButton, SMSCheckBoxButton, emailCheckBoxButton].map {checkBoxStackView.addArrangedSubview($0)}
         contentView.addSubview(checkBoxStackView)
         contentView.addSubview(startButton)
-//        contentView.addSubview(testLabel)
+        //        contentView.addSubview(testLabel)
     }
     func setLayout() {
         self.registerScrollView.snp.makeConstraints { make in
@@ -164,7 +281,7 @@ private extension PhoneNumberRegisterViewController {
             make.height.equalTo(20)
         }
         self.nameTextField.setLayout(nameLabel.snp.bottom)
-
+        
         self.nameWarningLabel.snp.makeConstraints { make in
             make.top.equalTo(nameTextField.snp.bottom).offset(10)
             make.leading.equalToSuperview().offset(15)
@@ -195,9 +312,9 @@ private extension PhoneNumberRegisterViewController {
             make.leading.equalToSuperview().offset(15)
         }
         self.passwordTextField.setLayout(passWordLabel.snp.bottom)
-
+        
         self.passwordCheckTextField.setLayout(passwordTextField.snp.bottom)
-
+        
         self.passwordWarningLabel.snp.makeConstraints { make in
             make.top.equalTo(passwordCheckTextField.snp.bottom).offset(10)
             make.leading.equalToSuperview().offset(15)
@@ -207,7 +324,7 @@ private extension PhoneNumberRegisterViewController {
             make.leading.equalToSuperview().offset(15)
         }
         self.nickNameTextField.setLayout(nickNameLabel.snp.bottom)
-
+        
         self.phone_linkLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(15)
             make.top.equalTo(nickNameTextField.snp.bottom).offset(40)
@@ -215,11 +332,15 @@ private extension PhoneNumberRegisterViewController {
         self.phone_linkButton.snp.makeConstraints { make in
             make.top.equalTo(phone_linkLabel.snp.bottom).offset(10)
             make.leading.equalToSuperview().offset(15)
+//            make.height.equalTo(30)
+//            make.width.equalTo(100)
         }
-
+        
         self.seletAllButton.snp.makeConstraints { make in
             make.top.equalTo(phone_linkButton.snp.bottom).offset(40)
             make.leading.equalToSuperview().offset(15)
+//            make.height.equalTo(30)
+//            make.width.equalTo(250)
         }
         self.horizontalLine.snp.makeConstraints { make in
             make.top.equalTo(seletAllButton.snp.bottom).offset(10)
@@ -248,6 +369,4 @@ private extension PhoneNumberRegisterViewController {
             make.bottom.equalToSuperview()
         }
     }
-   
-//    }
 }

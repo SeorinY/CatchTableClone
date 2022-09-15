@@ -16,11 +16,13 @@ class QuestionView: UIView {
     
     private let feqLabel  = UILabel().then {
         $0.text = "자주 묻는 질문"
-        $0.font = .systemFont(ofSize: 30, weight: .black)
+//        $0.font = .systemFont(ofSize: 30, weight: .black)
+        $0.font = Font.titleFont
     }
     private let feqTextView = UITextView().then {
         $0.backgroundColor = .clear
-        $0.font = .systemFont(ofSize: 15)
+//        $0.font = .systemFont(ofSize: 15)
+        $0.font = Font.lightFont
     }
     private let okButton = generalButton(.ready, "확인")
     

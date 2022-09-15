@@ -2,9 +2,13 @@ import UIKit
 import SnapKit
 
 class CSTextField: UITextField {
-    required init(_ placeHolder: String, _ returnType: UIReturnKeyType = .default) {
+    let padding = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
+    
+    required init(_ placeHolder: String, _ returnType: UIReturnKeyType = .default, _ keyboardType: UIKeyboardType = .default) {
         super.init(frame: .zero)
         self.placeholder = placeHolder
+        self.returnKeyType = returnType
+        self.keyboardType = keyboardType
         self.backgroundColor = UIColor(red: 247.0 / 255.0, green: 247.0 / 255.0, blue: 247.0 / 255.0, alpha: 1)
         self.layer.cornerRadius = 8
         self.font = UIFont.systemFont(ofSize: 14, weight: .regular)
@@ -21,6 +25,25 @@ class CSTextField: UITextField {
             make.height.equalTo(44)
             make.top.equalTo(target).offset(10)
         }
+    }
+//    override func textRect(forBounds bounds: CGRect) -> CGRect {
+//        let rect = super.textRect(forBounds: bounds)
+//        return rect.inset(by: padding)
+//    }
+//
+//    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+//        let rect = super.editingRect(forBounds: bounds)
+//        return rect.inset(by: padding)
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+
+    override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
     }
 }
 
@@ -66,15 +89,19 @@ class underLineLoginTextField : UITextField{
     }
 }
 class CheckBoxButton : UIButton {
-    let buttonText: String
-    required init(_ text: String) {
-        self.buttonText = text
-        
+    enum buttonStyle {
+        case check
+        case unCheck
+    }
+    var style : buttonStyle
+
+    required init( _ text: String, _ buttonStyle: buttonStyle = .unCheck) {
+        self.style = buttonStyle
         super.init(frame: .zero)
+        styleConfigure(buttonStyle)
         self.layer.cornerRadius = 8
         self.setImage(UIImage(systemName: "checkmark.square.fill"), for: .normal)
         self.backgroundColor = .systemBackground
-        self.tintColor = .systemGray
         self.setTitleColor(.black, for: .normal)
         self.setTitle("  \(text)", for: .normal)
         self.titleLabel?.font = Font.generalFont
@@ -85,6 +112,26 @@ class CheckBoxButton : UIButton {
     required init?(coder: NSCoder) {
         fatalError()
     }
+
+    
+    public func didClickButton() {
+        if self.style == .check {
+            styleConfigure(.unCheck)
+        } else {
+            styleConfigure(.check)
+        }
+    }
+    public func styleConfigure(_ buttonStyle : buttonStyle){
+        style = buttonStyle
+        if buttonStyle == .check{
+            self.tintColor = UIColor(named: "logoColor")
+        }
+        else if buttonStyle == .unCheck{
+            self.tintColor = UIColor(named: "buttonBackgroundColor")
+        }
+    }
+    
+    //    button.backgroundColor = UIColor(red: 253.0 / 255.0, green: 227.0 / 255.0, blue: 10.0 / 255.0, alpha: 1)
 }
 
 class generalButton : UIButton{
