@@ -10,13 +10,14 @@ import SnapKit
 import Then
 
 class PopOverViewController: UIViewController {
+    
     private let label = UILabel().then {
-        $0.text = "레스토랑 예약, 알림을 제공하기 위해 휴대폰 번호를 사용한 본인 인증이 필요합니다. 본인 인증 시 수집된 개인정보는 캐치테이블 서비스 외 다른 용도로 사용되지 않습니다."
         $0.font = Font.lightFont
         $0.textColor = .white
         $0.numberOfLines = 0
     }
-    
+    private var tapOutsideRecognizer: UITapGestureRecognizer!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(label)
@@ -27,5 +28,37 @@ class PopOverViewController: UIViewController {
             make.trailing.bottom.equalToSuperview().offset(-2)
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
+    }
+    
+    public func setText(_ text: String) {
+        label.text = text
+    }
+}
+
+extension PopOverViewController: UIGestureRecognizerDelegate {
+    
+    
+    func close(sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
+    }
+
+    // MARK: - Gesture methods to dismiss this with tap outside
+    @objc func handleTapBehind(sender: UITapGestureRecognizer) {
+        if (sender.state == UIGestureRecognizer.State.ended) {
+            let location: CGPoint = sender.location(in: self.view)
+
+            if (!self.view.point(inside: location, with: nil)) {
+                self.view.window?.removeGestureRecognizer(sender)
+                self.close(sender: sender)
+            }
+        }
+    }
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
 }

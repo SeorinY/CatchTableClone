@@ -37,7 +37,7 @@ class PhoneNumberRegisterViewController: UIViewController {
         $0.setImage(buttonImage, for: .normal)
     }
     private let phoneNumberTextField = CSTextField("  숫자만 입력해 주세요.", .default, .numberPad)
-    private let phoneNumberButton = generalButton(.wait, "인증번호요청")
+    private let phoneNumberButton = generalButton(.wait, "인증번호 요청")
     
     private let passWordLabel = UILabel().then {
         $0.text = "비밀 번호 *"
@@ -179,7 +179,8 @@ extension PhoneNumberRegisterViewController {
     }
     
     @objc func questionmarkButtonPressed() {
-        
+        questionmarkButton.isHidden = false
+        questionPopOverView.viewAppear()
     }
     
     
@@ -270,7 +271,7 @@ private extension PhoneNumberRegisterViewController {
         [pushAlarmCheckBoxButton, SMSCheckBoxButton, emailCheckBoxButton].map {checkBoxStackView.addArrangedSubview($0)}
         contentView.addSubview(checkBoxStackView)
         contentView.addSubview(startButton)
-        contentView.addSubview(<#T##view: UIView##UIView#>)
+        contentView.addSubview(questionPopOverView)
     }
     func setLayout() {
         self.registerScrollView.snp.makeConstraints { make in
@@ -376,8 +377,8 @@ private extension PhoneNumberRegisterViewController {
         questionPopOverView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(5)
             make.top.equalTo(questionmarkButton.snp.bottom).offset(20)
-            make.width.equalTo(350)
-            make.height.equalTo(50)
+            make.width.equalTo(340)
+            make.height.equalTo(35)
         }
         
         phone_linkPopOverView.snp.makeConstraints { make in
