@@ -47,9 +47,7 @@ class LoginViewController: UIViewController{
     }
 }
 
-
 //MARK: - Controller
-
 extension LoginViewController : LoginVieWDelegate{
     func kakaoLoginButtonPressed() {
         print("kakao")
