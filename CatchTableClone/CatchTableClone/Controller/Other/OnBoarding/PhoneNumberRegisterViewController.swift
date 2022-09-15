@@ -101,6 +101,9 @@ class PhoneNumberRegisterViewController: UIViewController {
         $0.layer.cornerRadius = 8
     }
     
+    private let questionPopOverView = PopOverView(Message.warningMessage[0])
+    private let phone_linkPopOverView = PopOverView(Message.warningMessage[1])
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         checkBoxTableView.delegate = self
@@ -109,6 +112,7 @@ class PhoneNumberRegisterViewController: UIViewController {
         addAction()
         self.setUI()
         self.setLayout()
+        self.setHiddenLayout()
     }
     
     
@@ -148,12 +152,7 @@ extension PhoneNumberRegisterViewController : UITableViewDelegate, UITableViewDa
         } else {
             tableViewCheckBoxCount = tableViewCheckBoxCount + 1
         }
-        
-        if tableViewCheckBoxCount == maxTableViewCheckBoxCount {
-            seletAllButton.styleConfigure(.check)
-        } else {
-            seletAllButton.styleConfigure(.unCheck)
-        }
+        checkSeletAllButton()
     }
 }
 
@@ -180,13 +179,6 @@ extension PhoneNumberRegisterViewController {
     }
     
     @objc func questionmarkButtonPressed() {
-        let vc = PopOverViewController()
-        vc.modalPresentationStyle = .popover
-        vc.preferredContentSize = CGSize(width: 350, height: 60)
-        vc.popoverPresentationController?.sourceView = questionmarkButton
-        vc.popoverPresentationController?.permittedArrowDirections = .up
-        vc.popoverPresentationController?.delegate = self
-        self.present(vc, animated: true, completion: nil)
         
     }
     
@@ -227,21 +219,28 @@ extension PhoneNumberRegisterViewController {
     
     @objc func alarmCheckBoxButtonPressed(_ sender: CheckBoxButton) {
         sender.didClickButton()
-        if(sender.style == .unCheck) {
-            alarmCheckBoxCount = alarmCheckBoxCount - 1
-        } else {
-            alarmCheckBoxCount = alarmCheckBoxCount + 1
-        }
+        alarmCheckBoxCount = sender.style == .unCheck ? alarmCheckBoxCount - 1 : alarmCheckBoxCount + 1
+
         
         let indexPath = IndexPath(row: 4, section: 0)
         let cell = checkBoxTableView.cellForRow(at: indexPath) as! PhoneNumberRegisterCell
         if alarmCheckBoxCount == maxAlarmCheckBoxCount {
+            tableViewCheckBoxCount = cell.checkBoxState == .unCheck ? tableViewCheckBoxCount + 1: tableViewCheckBoxCount
             cell.buttonCheck(.check)
         } else {
+            tableViewCheckBoxCount = cell.checkBoxState == .check ? tableViewCheckBoxCount - 1: tableViewCheckBoxCount
             cell.buttonCheck(.unCheck)
         }
+        
+        checkSeletAllButton()
     }
-    
+    func checkSeletAllButton() {
+        if tableViewCheckBoxCount == maxTableViewCheckBoxCount {
+            seletAllButton.styleConfigure(.check)
+        } else {
+            seletAllButton.styleConfigure(.unCheck)
+        }
+    }
 }
 
 private extension PhoneNumberRegisterViewController {
@@ -271,6 +270,7 @@ private extension PhoneNumberRegisterViewController {
         [pushAlarmCheckBoxButton, SMSCheckBoxButton, emailCheckBoxButton].map {checkBoxStackView.addArrangedSubview($0)}
         contentView.addSubview(checkBoxStackView)
         contentView.addSubview(startButton)
+        contentView.addSubview(<#T##view: UIView##UIView#>)
     }
     func setLayout() {
         self.registerScrollView.snp.makeConstraints { make in
@@ -371,18 +371,17 @@ private extension PhoneNumberRegisterViewController {
             make.bottom.equalToSuperview()
         }
     }
-}
-
-extension PhoneNumberRegisterViewController: UIPopoverPresentationControllerDelegate {
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        return .none
-    }
     
-    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+    func setHiddenLayout() {
+        questionPopOverView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(5)
+            make.top.equalTo(questionmarkButton.snp.bottom).offset(20)
+            make.width.equalTo(350)
+            make.height.equalTo(50)
+        }
         
-    }
-    
-    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
-        return true
+        phone_linkPopOverView.snp.makeConstraints { make in
+            
+        }
     }
 }
