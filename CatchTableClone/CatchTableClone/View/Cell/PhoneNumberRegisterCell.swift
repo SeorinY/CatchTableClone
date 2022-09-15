@@ -28,11 +28,7 @@ class PhoneNumberRegisterCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError()
     }
-//    
-//    public func getCheckBoxState() -> CheckBoxButton.buttonStyle {
-//        return checkBoxButton.style
-//    }
-    
+
     func configure(_ text: String) {
         checkBoxButton.setTitle(text, for: .normal)
     }
