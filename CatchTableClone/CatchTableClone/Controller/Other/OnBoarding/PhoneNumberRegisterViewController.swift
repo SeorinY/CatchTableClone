@@ -78,13 +78,13 @@ class PhoneNumberRegisterViewController: UIViewController {
         //        $0.allowsSelection = false
         $0.allowsMultipleSelection = true
     }
-//    private var
+    //    private var
     private let pushAlarmCheckBoxButton = CheckBoxButton(" 푸시 알림")
     private let SMSCheckBoxButton = CheckBoxButton(" SMS수신")
     private let emailCheckBoxButton = CheckBoxButton(" 이메일 수신")
     private var tableViewCheckBoxCount = 0
     private var alarmCheckBoxCount = 0
-
+    
     private let maxAlarmCheckBoxCount = 3
     private let maxTableViewCheckBoxCount = 5
     
@@ -115,7 +115,7 @@ class PhoneNumberRegisterViewController: UIViewController {
 }
 
 extension PhoneNumberRegisterViewController : UITableViewDelegate, UITableViewDataSource {
-
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Message.checkBoxItem.count
@@ -142,14 +142,13 @@ extension PhoneNumberRegisterViewController : UITableViewDelegate, UITableViewDa
                 alarmCheckBoxCount = maxAlarmCheckBoxCount
             }
         }
-//        var isAlarmSet: Bool = indexPath.row == 4 ? true : false
-
+        
         if cell.checkBoxState == .unCheck {
             tableViewCheckBoxCount = tableViewCheckBoxCount - 1
         } else {
             tableViewCheckBoxCount = tableViewCheckBoxCount + 1
         }
-
+        
         if tableViewCheckBoxCount == maxTableViewCheckBoxCount {
             seletAllButton.styleConfigure(.check)
         } else {
@@ -181,8 +180,16 @@ extension PhoneNumberRegisterViewController {
     }
     
     @objc func questionmarkButtonPressed() {
-        print("pressed")
+        let vc = PopOverViewController()
+        vc.modalPresentationStyle = .popover
+        vc.preferredContentSize = CGSize(width: 350, height: 60)
+        vc.popoverPresentationController?.sourceView = questionmarkButton
+        vc.popoverPresentationController?.permittedArrowDirections = .up
+        vc.popoverPresentationController?.delegate = self
+        self.present(vc, animated: true, completion: nil)
+        
     }
+    
     
     @objc private func phone_linkButtonPressed() {
         let indexPath = IndexPath(row: 3, section: 0)
@@ -193,7 +200,7 @@ extension PhoneNumberRegisterViewController {
     
     @objc func selectAllPresserd(){
         seletAllButton.didClickButton()
-       
+        
         let checkBoxStyle = seletAllButton.style
         
         if checkBoxStyle == .unCheck {
@@ -206,13 +213,13 @@ extension PhoneNumberRegisterViewController {
         SMSCheckBoxButton.styleConfigure(checkBoxStyle)
         emailCheckBoxButton.styleConfigure(checkBoxStyle)
         pushAlarmCheckBoxButton.styleConfigure(checkBoxStyle)
-
+        
         for section in 0..<checkBoxTableView.numberOfSections {
-                for row in 0..<checkBoxTableView.numberOfRows(inSection: section) {
-                    let cell = checkBoxTableView.cellForRow(at: [section,row]) as! PhoneNumberRegisterCell
-                    cell.buttonCheck(checkBoxStyle)
-                }
+            for row in 0..<checkBoxTableView.numberOfRows(inSection: section) {
+                let cell = checkBoxTableView.cellForRow(at: [section,row]) as! PhoneNumberRegisterCell
+                cell.buttonCheck(checkBoxStyle)
             }
+        }
     }
     @objc func startButtonPressed() {
         print("start")
@@ -234,7 +241,7 @@ extension PhoneNumberRegisterViewController {
             cell.buttonCheck(.unCheck)
         }
     }
-   
+    
 }
 
 private extension PhoneNumberRegisterViewController {
@@ -264,7 +271,6 @@ private extension PhoneNumberRegisterViewController {
         [pushAlarmCheckBoxButton, SMSCheckBoxButton, emailCheckBoxButton].map {checkBoxStackView.addArrangedSubview($0)}
         contentView.addSubview(checkBoxStackView)
         contentView.addSubview(startButton)
-        //        contentView.addSubview(testLabel)
     }
     func setLayout() {
         self.registerScrollView.snp.makeConstraints { make in
@@ -332,15 +338,11 @@ private extension PhoneNumberRegisterViewController {
         self.phone_linkButton.snp.makeConstraints { make in
             make.top.equalTo(phone_linkLabel.snp.bottom).offset(10)
             make.leading.equalToSuperview().offset(15)
-//            make.height.equalTo(30)
-//            make.width.equalTo(100)
         }
         
         self.seletAllButton.snp.makeConstraints { make in
             make.top.equalTo(phone_linkButton.snp.bottom).offset(40)
             make.leading.equalToSuperview().offset(15)
-//            make.height.equalTo(30)
-//            make.width.equalTo(250)
         }
         self.horizontalLine.snp.makeConstraints { make in
             make.top.equalTo(seletAllButton.snp.bottom).offset(10)
@@ -368,5 +370,19 @@ private extension PhoneNumberRegisterViewController {
             make.height.equalTo(44)
             make.bottom.equalToSuperview()
         }
+    }
+}
+
+extension PhoneNumberRegisterViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+    
+    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+        
+    }
+    
+    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
+        return true
     }
 }
