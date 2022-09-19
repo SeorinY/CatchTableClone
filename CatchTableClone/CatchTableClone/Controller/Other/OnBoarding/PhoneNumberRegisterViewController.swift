@@ -37,7 +37,7 @@ class PhoneNumberRegisterViewController: UIViewController {
         $0.setImage(buttonImage, for: .normal)
     }
     private let phoneNumberTextField = CSTextField("  숫자만 입력해 주세요.", .default, .numberPad)
-    private let phoneNumberButton = generalButton(.wait, "인증번호요청")
+    private let phoneNumberButton = generalButton(.wait, "인증번호 요청")
     
     private let passWordLabel = UILabel().then {
         $0.text = "비밀 번호 *"
@@ -101,8 +101,13 @@ class PhoneNumberRegisterViewController: UIViewController {
         $0.layer.cornerRadius = 8
     }
     
-    private let questionPopOverView = PopOverView(Message.warningMessage[0])
-    private let phone_linkPopOverView = PopOverView(Message.warningMessage[1])
+//    private let questionPopOverView = PopOverView(Message.warningMessage[0])
+    private let questionPopOverView = PopUpTextView(Message.warningMessage[0])
+
+    private let phone_linkPopOverView = PopUpTextView(Message.warningMessage[1]).then {
+        $0.backgroundColor = .systemGray
+        $0.font = Font.lightFont
+    }
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,6 +139,14 @@ extension PhoneNumberRegisterViewController : UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         checkBoxTableView.deselectRow(at: indexPath, animated: false)
         let cell = checkBoxTableView.cellForRow(at: indexPath) as! PhoneNumberRegisterCell
+        if indexPath.row == 3 && cell.checkBoxState == .check && phone_linkButton.style == .check{
+            phone_linkPopOverView.viewAppear()
+            Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { Timer in
+                self.phone_linkPopOverView.viewDisAppear()
+            }
+            return
+        }
+        
         cell.pressedButton()
         
         if indexPath.row == 4 {
@@ -146,7 +159,8 @@ extension PhoneNumberRegisterViewController : UITableViewDelegate, UITableViewDa
                 alarmCheckBoxCount = maxAlarmCheckBoxCount
             }
         }
-        
+        // 연동하기 -> 전체선택 그거 안켜짐 씨부레
+
         if cell.checkBoxState == .unCheck {
             tableViewCheckBoxCount = tableViewCheckBoxCount - 1
         } else {
@@ -179,14 +193,22 @@ extension PhoneNumberRegisterViewController {
     }
     
     @objc func questionmarkButtonPressed() {
-        
+        questionPopOverView.viewAppear()
     }
     
     
     @objc private func phone_linkButtonPressed() {
         let indexPath = IndexPath(row: 3, section: 0)
-        phone_linkButton.didClickButton()
         let cell = checkBoxTableView.cellForRow(at: indexPath) as! PhoneNumberRegisterCell
+        if cell.checkBoxState == phone_linkButton.style {
+            if cell.checkBoxState == .unCheck {
+                tableViewCheckBoxCount += 1
+            } else {
+                tableViewCheckBoxCount -= 1
+            }
+        }
+       checkSeletAllButton()
+        phone_linkButton.didClickButton()
         cell.buttonCheck(phone_linkButton.style)
     }
     
@@ -220,7 +242,6 @@ extension PhoneNumberRegisterViewController {
     @objc func alarmCheckBoxButtonPressed(_ sender: CheckBoxButton) {
         sender.didClickButton()
         alarmCheckBoxCount = sender.style == .unCheck ? alarmCheckBoxCount - 1 : alarmCheckBoxCount + 1
-
         
         let indexPath = IndexPath(row: 4, section: 0)
         let cell = checkBoxTableView.cellForRow(at: indexPath) as! PhoneNumberRegisterCell
@@ -234,6 +255,7 @@ extension PhoneNumberRegisterViewController {
         
         checkSeletAllButton()
     }
+    
     func checkSeletAllButton() {
         if tableViewCheckBoxCount == maxTableViewCheckBoxCount {
             seletAllButton.styleConfigure(.check)
@@ -270,7 +292,8 @@ private extension PhoneNumberRegisterViewController {
         [pushAlarmCheckBoxButton, SMSCheckBoxButton, emailCheckBoxButton].map {checkBoxStackView.addArrangedSubview($0)}
         contentView.addSubview(checkBoxStackView)
         contentView.addSubview(startButton)
-        contentView.addSubview(<#T##view: UIView##UIView#>)
+        contentView.addSubview(questionPopOverView)
+        contentView.addSubview(phone_linkPopOverView)
     }
     func setLayout() {
         self.registerScrollView.snp.makeConstraints { make in
@@ -376,12 +399,15 @@ private extension PhoneNumberRegisterViewController {
         questionPopOverView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(5)
             make.top.equalTo(questionmarkButton.snp.bottom).offset(20)
-            make.width.equalTo(350)
-            make.height.equalTo(50)
+            make.width.equalTo(340)
+            make.height.equalTo(48)
         }
         
         phone_linkPopOverView.snp.makeConstraints { make in
-            
+            make.leading.equalToSuperview().offset(5)
+            make.trailing.equalToSuperview().offset(-5)
+            make.bottom.equalToSuperview().offset(-5)
+            make.height.equalTo(30)
         }
     }
 }

@@ -21,8 +21,6 @@
 		A2684A48FE5A8BC81BA9457C /* Pods_CatchTableClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DBF08BB74A170F81A01B2A /* Pods_CatchTableClone.framework */; };
 		FE33456A28CF1F4C00D568B4 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE33456928CF1F4C00D568B4 /* Font.swift */; };
 		FEB2D4B828C5BD870091BA6B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB2D4B728C5BD870091BA6B /* LoginViewController.swift */; };
-		FECEC7FA28D2F05B00E83EFD /* PopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECEC7F928D2F05B00E83EFD /* PopOverViewController.swift */; };
-		FECEC7FC28D31BB600E83EFD /* PopOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECEC7FB28D31BB600E83EFD /* PopOverView.swift */; };
 		FED51B6C28C82EA20093CDCA /* LoginLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B6B28C82EA20093CDCA /* LoginLogoView.swift */; };
 		FED51B6E28C831550093CDCA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B6D28C831550093CDCA /* LoginView.swift */; };
 		FED51B7528C88BDC0093CDCA /* PhoneNumberRegisterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B7428C88BDC0093CDCA /* PhoneNumberRegisterCell.swift */; };
@@ -56,8 +54,6 @@
 		B9DBF08BB74A170F81A01B2A /* Pods_CatchTableClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CatchTableClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE33456928CF1F4C00D568B4 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		FEB2D4B728C5BD870091BA6B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		FECEC7F928D2F05B00E83EFD /* PopOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverViewController.swift; sourceTree = "<group>"; };
-		FECEC7FB28D31BB600E83EFD /* PopOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverView.swift; sourceTree = "<group>"; };
 		FED51B6B28C82EA20093CDCA /* LoginLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLogoView.swift; sourceTree = "<group>"; };
 		FED51B6D28C831550093CDCA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		FED51B6F28C87FD60093CDCA /* CatchTableClone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CatchTableClone.entitlements; sourceTree = "<group>"; };
@@ -183,7 +179,6 @@
 				FED51B7828C88C3D0093CDCA /* QuestionView.swift */,
 				FED51B7A28C88C680093CDCA /* InquireView.swift */,
 				FED51B7C28C88C780093CDCA /* PhoneNumberLoginView.swift */,
-				FECEC7FB28D31BB600E83EFD /* PopOverView.swift */,
 				52B4D29F28C5B89F00FEB427 /* StoryBoard */,
 			);
 			path = View;
@@ -236,7 +231,6 @@
 			isa = PBXGroup;
 			children = (
 				FED51B7628C88C260093CDCA /* PhoneNumberRegisterViewController.swift */,
-				FECEC7F928D2F05B00E83EFD /* PopOverViewController.swift */,
 				FED51B7E28C88C970093CDCA /* InquireViewController.swift */,
 				FED51B8028C88CA10093CDCA /* PhoneNumberLoginViewController.swift */,
 				FED51B8228C88CCE0093CDCA /* FindPasswordViewController.swift */,
@@ -369,7 +363,6 @@
 			files = (
 				FED51B7528C88BDC0093CDCA /* PhoneNumberRegisterCell.swift in Sources */,
 				FED51B7728C88C260093CDCA /* PhoneNumberRegisterViewController.swift in Sources */,
-				FECEC7FC28D31BB600E83EFD /* PopOverView.swift in Sources */,
 				FED51B7F28C88C970093CDCA /* InquireViewController.swift in Sources */,
 				FED51B7B28C88C690093CDCA /* InquireView.swift in Sources */,
 				FED51B8128C88CA10093CDCA /* PhoneNumberLoginViewController.swift in Sources */,
@@ -387,7 +380,6 @@
 				FED51B8A28C890300093CDCA /* Message.swift in Sources */,
 				FED7162C28C9BCE7006088BD /* CustomClass.swift in Sources */,
 				FED51B6E28C831550093CDCA /* LoginView.swift in Sources */,
-				FECEC7FA28D2F05B00E83EFD /* PopOverViewController.swift in Sources */,
 				FED51B8328C88CCE0093CDCA /* FindPasswordViewController.swift in Sources */,
 				528E092E28CF1A8D00B7CAF1 /* FEQViewController.swift in Sources */,
 				FEB2D4B828C5BD870091BA6B /* LoginViewController.swift in Sources */,

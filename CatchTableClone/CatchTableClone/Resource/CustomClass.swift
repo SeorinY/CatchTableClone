@@ -164,3 +164,55 @@ class generalButton : UIButton{
     }
 }
 
+class PopUpTextView : UITextView, UIGestureRecognizerDelegate {
+    private var tapOutsideRecognizer: UITapGestureRecognizer!
+    required init(_ text: String){
+        super.init(frame: .zero, textContainer: nil)
+        self.text = text
+        self.isHidden = true
+        self.backgroundColor = .secondaryLabel
+        self.layer.cornerRadius = 4
+        self.textColor = .white
+        self.font = UIFont.systemFont(ofSize: 11, weight: .medium)
+        self.alpha = 1
+        self.isEditable = false
+        self.isScrollEnabled = false
+        self.textContainerInset = UIEdgeInsets(top: 3, left: 10, bottom: 0, right: 5)
+    }
+    
+    func viewAppear() {
+        self.isHidden = false
+        if (self.tapOutsideRecognizer == nil) {
+            self.tapOutsideRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTapBehind))
+            self.tapOutsideRecognizer.numberOfTapsRequired = 1
+            self.tapOutsideRecognizer.cancelsTouchesInView = false
+            self.tapOutsideRecognizer.delegate = self
+            self.window?.addGestureRecognizer(self.tapOutsideRecognizer)
+        }
+    }
+    func viewDisAppear() {
+        self.isHidden = true
+        if(self.tapOutsideRecognizer != nil) {
+            self.window?.removeGestureRecognizer(self.tapOutsideRecognizer)
+            self.tapOutsideRecognizer = nil
+        }
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    // MARK: - Gesture methods to dismiss this with tap outside
+    @objc func handleTapBehind(sender: UITapGestureRecognizer) {
+        if (sender.state == UIGestureRecognizer.State.ended) {
+            let location: CGPoint = sender.location(in: self)
+            if (!self.point(inside: location, with: nil)) {
+                self.window?.removeGestureRecognizer(sender)
+                self.viewDisAppear()
+            }
+        }
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+}
+
