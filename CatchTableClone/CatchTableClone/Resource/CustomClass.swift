@@ -7,7 +7,7 @@ enum buttonStyle{
 }
 
 class CSTextField: UITextField {
-    let padding = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
+    let padding = UIEdgeInsets(top: 0, left: 13, bottom: 0, right: 0)
     
     required init(_ placeHolder: String, _ returnType: UIReturnKeyType = .default, _ keyboardType: UIKeyboardType = .default) {
         super.init(frame: .zero)
@@ -215,4 +215,5 @@ class PopUpTextView : UITextView, UIGestureRecognizerDelegate {
         return true
     }
 }
+
 

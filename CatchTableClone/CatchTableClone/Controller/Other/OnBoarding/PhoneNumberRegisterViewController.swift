@@ -10,6 +10,7 @@ import Then
 import SnapKit
 
 class PhoneNumberRegisterViewController: UIViewController {
+    private var timer1, timer2 : Timer?
     private let registerScrollView = UIScrollView().then{
         $0.backgroundColor = .systemBackground
     }
@@ -20,7 +21,7 @@ class PhoneNumberRegisterViewController: UIViewController {
         $0.changeTextColor("*")
     }
     
-    private let nameTextField = CSTextField("  이름을 입력해 주세요.")
+    private let nameTextField = CSTextField("이름을 입력해 주세요.")
     
     private let nameWarningLabel = UILabel().then {
         $0.text = "레스토랑을 예약할 때 이름이므로 꼭 실명을 사용해 주세요."
@@ -36,7 +37,7 @@ class PhoneNumberRegisterViewController: UIViewController {
         let buttonImage = UIImage(systemName: "questionmark.circle")?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
         $0.setImage(buttonImage, for: .normal)
     }
-    private let phoneNumberTextField = CSTextField("  숫자만 입력해 주세요.", .default, .numberPad)
+    private let phoneNumberTextField = CSTextField("숫자만 입력해 주세요.", .default, .numberPad)
     private let phoneNumberButton = generalButton(.wait, "인증번호 요청")
     
     private let passWordLabel = UILabel().then {
@@ -44,9 +45,9 @@ class PhoneNumberRegisterViewController: UIViewController {
         $0.font = Font.generalFont
         $0.changeTextColor("*")
     }
-    private let passwordTextField = CSTextField("  비밀번호를 입력해 주세요.")
+    private let passwordTextField = CSTextField("비밀번호를 입력해 주세요.")
     
-    private let passwordCheckTextField = CSTextField("  비밀번호를 다시 한번 입력해 주세요.")
+    private let passwordCheckTextField = CSTextField("비밀번호를 다시 한번 입력해 주세요.")
     
     private let passwordWarningLabel = UILabel().then {
         $0.text = "6자리 이상으로 설정해 주세요."
@@ -58,7 +59,7 @@ class PhoneNumberRegisterViewController: UIViewController {
         $0.font = Font.generalFont
     }
     
-    private let nickNameTextField = CSTextField("  닉네임을 입력해 주세요.")
+    private let nickNameTextField = CSTextField("닉네임을 입력해 주세요.")
     private let phone_linkLabel = UILabel().then {
         $0.text = "전화-링크 예약 앱에 연동하기 (선택)"
         $0.font = Font.generalFont
@@ -75,7 +76,6 @@ class PhoneNumberRegisterViewController: UIViewController {
     private let checkBoxTableView = UITableView().then {
         $0.separatorStyle = .none
         $0.register(PhoneNumberRegisterCell.self, forCellReuseIdentifier: "checkBoxCell")
-        //        $0.allowsSelection = false
         $0.allowsMultipleSelection = true
     }
     //    private var
@@ -90,7 +90,7 @@ class PhoneNumberRegisterViewController: UIViewController {
     
     private let checkBoxStackView = UIStackView().then {
         $0.axis = .horizontal
-        $0.alignment = .center
+        $0.alignment = .fill
         $0.distribution = .fillEqually
         $0.spacing = 1
     }
@@ -101,14 +101,20 @@ class PhoneNumberRegisterViewController: UIViewController {
         $0.layer.cornerRadius = 8
     }
     
-//    private let questionPopOverView = PopOverView(Message.warningMessage[0])
+    //    private let questionPopOverView = PopOverView(Message.warningMessage[0])
     private let questionPopOverView = PopUpTextView(Message.warningMessage[0])
-
+    
     private let phone_linkPopOverView = PopUpTextView(Message.warningMessage[1]).then {
         $0.backgroundColor = .systemGray
         $0.font = Font.lightFont
     }
-        
+    private let certificationTextField = CSTextField("인증번호를 입력해주세요").then {
+        $0.isHidden = true
+    }
+    private let certificationButton = generalButton(.wait, "인증번호 확인").then {
+        $0.isHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         checkBoxTableView.delegate = self
@@ -119,10 +125,8 @@ class PhoneNumberRegisterViewController: UIViewController {
         self.setLayout()
         self.setHiddenLayout()
     }
-    
-    
 }
-
+//MARK: - UITableViewDelegate & UITableViewDataSource
 extension PhoneNumberRegisterViewController : UITableViewDelegate, UITableViewDataSource {
     
     
@@ -160,7 +164,7 @@ extension PhoneNumberRegisterViewController : UITableViewDelegate, UITableViewDa
             }
         }
         // 연동하기 -> 전체선택 그거 안켜짐 씨부레
-
+        
         if cell.checkBoxState == .unCheck {
             tableViewCheckBoxCount = tableViewCheckBoxCount - 1
         } else {
@@ -174,28 +178,85 @@ extension PhoneNumberRegisterViewController : UITableViewDelegate, UITableViewDa
 
 extension PhoneNumberRegisterViewController {
     func addAction() {
-        phoneNumberTextField.addTarget(self, action: #selector(canSendCertification), for: .editingChanged)
+        phoneNumberTextField.addTarget(self, action: #selector(canSendCertification(_:)), for: .editingChanged)
         phone_linkButton.addTarget(self, action: #selector(phone_linkButtonPressed), for: .touchUpInside)
         questionmarkButton.addTarget(self, action: #selector(questionmarkButtonPressed), for: .touchUpInside)
         seletAllButton.addTarget(self, action: #selector(selectAllPresserd), for: .touchUpInside)
+        phoneNumberButton.addTarget(self, action: #selector(phoneNumberButtonPressed), for: .touchUpInside)
         startButton.addTarget(self, action: #selector(startButtonPressed), for: .touchUpInside)
         pushAlarmCheckBoxButton.addTarget(self, action: #selector(alarmCheckBoxButtonPressed), for: .touchUpInside)
         SMSCheckBoxButton.addTarget(self, action: #selector(alarmCheckBoxButtonPressed), for: .touchUpInside)
         emailCheckBoxButton.addTarget(self, action: #selector(alarmCheckBoxButtonPressed), for: .touchUpInside)
+        certificationTextField.addTarget(self, action: #selector(canSendCertification(_:)), for: .editingChanged)
+        certificationButton.addTarget(self, action: #selector(certificationButtonPressed(_:)), for: .touchUpInside)
     }
     
-    @objc private func canSendCertification(){
-        if phoneNumberTextField.text?.count ?? 0 < 10{
-            phoneNumberButton.styleConfigure(.wait)
-        }else{
-            phoneNumberButton.styleConfigure(.ready)
+    @objc private func phoneNumberButtonPressed() {
+        guard phoneNumberButton.style == .ready  else{
+            return
+        }
+        if phoneNumberButton.currentTitle != "인증번호 재요청" {
+            phoneNumberButton.setTitle("인증번호 재요청", for: .normal)
+        }
+        phoneNumberButton.styleConfigure(.wait)
+        startTimer()
+        
+        certificationButton.isHidden = false
+        certificationTextField.isHidden = false
+        passWordLabel.snp.removeConstraints()
+        passWordLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(15)
+            make.trailing.equalToSuperview().offset(-15)
+            make.top.equalTo(certificationButton.snp.bottom).offset(40)
+            make.height.equalTo(44)
+        }
+        
+        view.layoutIfNeeded()
+        
+    }
+    @objc private func certificationButtonPressed(_ sender: generalButton) {
+        guard sender.style == .ready else {
+            return
+        }
+        stopTimer()
+        certificationButton.isHidden = true
+        certificationTextField.isHidden = true
+        passWordLabel.snp.removeConstraints()
+        passWordLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(15)
+            make.trailing.equalToSuperview().offset(-15)
+            make.top.equalTo(phoneNumberButton.snp.bottom).offset(40)
+            make.height.equalTo(44)
+        }
+        phoneNumberButton.setTitle("인증 완료", for: .normal)
+        phoneNumberButton.styleConfigure(.wait)
+        phoneNumberTextField.textColor = .systemGray
+        phoneNumberButton.isUserInteractionEnabled = false
+        phoneNumberTextField.isUserInteractionEnabled = false
+        view.layoutIfNeeded()
+        
+    }
+    
+    
+    @objc private func canSendCertification(_ sender: CSTextField){
+        var textCount = 10
+        var button : generalButton = phoneNumberButton
+        if sender == certificationTextField {
+            textCount = 6
+            button = certificationButton
+        }
+        
+        if sender.text?.count ?? 0 < textCount {
+            button.styleConfigure(.wait)
+        }
+        else {
+            button.styleConfigure(.ready)
         }
     }
     
     @objc func questionmarkButtonPressed() {
         questionPopOverView.viewAppear()
     }
-    
     
     @objc private func phone_linkButtonPressed() {
         let indexPath = IndexPath(row: 3, section: 0)
@@ -207,7 +268,7 @@ extension PhoneNumberRegisterViewController {
                 tableViewCheckBoxCount -= 1
             }
         }
-       checkSeletAllButton()
+        checkSeletAllButton()
         phone_linkButton.didClickButton()
         cell.buttonCheck(phone_linkButton.style)
     }
@@ -235,6 +296,8 @@ extension PhoneNumberRegisterViewController {
             }
         }
     }
+    
+    
     @objc func startButtonPressed() {
         print("start")
     }
@@ -256,6 +319,11 @@ extension PhoneNumberRegisterViewController {
         checkSeletAllButton()
     }
     
+
+}
+
+//MARK: - Function
+private extension PhoneNumberRegisterViewController {
     func checkSeletAllButton() {
         if tableViewCheckBoxCount == maxTableViewCheckBoxCount {
             seletAllButton.styleConfigure(.check)
@@ -263,8 +331,50 @@ extension PhoneNumberRegisterViewController {
             seletAllButton.styleConfigure(.unCheck)
         }
     }
+    private func startTimer() {
+        stopTimer()
+        timer1 = Timer.scheduledTimer(withTimeInterval: 4.0, repeats: false) { Timer in
+            self.phoneNumberButton.styleConfigure(.ready)
+        }
+        
+        let timeLabel = UILabel().then {
+            $0.text = "2:00"
+            $0.font = Font.generalFont
+            $0.textColor = UIColor(named: "logoColor")
+            $0.textAlignment = .center
+        }
+        certificationTextField.rightView = timeLabel
+        certificationTextField.rightViewMode = .always
+        certificationTextField.rightView?.snp.makeConstraints({ make in
+            make.width.equalTo(50)
+        }) // layout
+        var countDown = 120
+        timer2 = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { Timer in
+            // put this part in dispatch queue
+            var second = "\(countDown % 60)"
+            if countDown % 60 < 10 {
+                second = "0\(countDown % 60)"
+            }
+            
+            timeLabel.text = "\(countDown/60):\(second)"
+            countDown -= 1
+            if countDown <= 0 {
+                Timer.invalidate()
+            }
+        }
+    }
+    private func stopTimer() {
+        if timer1 != nil {
+            timer1?.invalidate()
+            timer1 = nil
+        }
+        if timer2 != nil {
+            timer2?.invalidate()
+            timer2 = nil
+        }
+    }
 }
-
+//MARK: - Layout
 private extension PhoneNumberRegisterViewController {
     func setUI() {
         self.view.addSubview(registerScrollView)
@@ -294,7 +404,12 @@ private extension PhoneNumberRegisterViewController {
         contentView.addSubview(startButton)
         contentView.addSubview(questionPopOverView)
         contentView.addSubview(phone_linkPopOverView)
+        
+        
+        contentView.addSubview(certificationButton)
+        contentView.addSubview(certificationTextField)
     }
+    
     func setLayout() {
         self.registerScrollView.snp.makeConstraints { make in
             make.edges.equalTo(0)
@@ -304,6 +419,35 @@ private extension PhoneNumberRegisterViewController {
             make.width.equalToSuperview()
         }
         
+        setNameFieldLayout()
+        setPhoneNumberFieldLayout()
+        setPassWordFieldLayout()
+        setCheckBoxFieldLayout()
+        
+        self.nickNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(passwordWarningLabel.snp.bottom).offset(40)
+            make.leading.equalToSuperview().offset(15)
+        }
+        self.nickNameTextField.setLayout(nickNameLabel.snp.bottom)
+    }
+    //MARK: - HiddenLayout
+    func setHiddenLayout() {
+        questionPopOverView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(5)
+            make.top.equalTo(questionmarkButton.snp.bottom).offset(20)
+            make.width.equalTo(340)
+            make.height.equalTo(48)
+        }
+        
+        phone_linkPopOverView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(5)
+            make.trailing.equalToSuperview().offset(-5)
+            make.bottom.equalToSuperview().offset(-5)
+            make.height.equalTo(30)
+        }
+    }
+    //MARK: - nameFieldLayout
+    private func setNameFieldLayout() {
         self.nameLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(15)
             make.top.equalToSuperview().offset(40)
@@ -315,6 +459,10 @@ private extension PhoneNumberRegisterViewController {
             make.top.equalTo(nameTextField.snp.bottom).offset(10)
             make.leading.equalToSuperview().offset(15)
         }
+    }
+    
+    //MARK: - phoneNumberFieldLayout
+    private func setPhoneNumberFieldLayout() {
         self.phoneNumberLabel.snp.makeConstraints { make in
             make.top.equalTo(nameWarningLabel.snp.bottom).offset(40)
             make.leading.equalToSuperview().offset(15)
@@ -336,6 +484,22 @@ private extension PhoneNumberRegisterViewController {
             make.trailing.equalTo(phoneNumberButton.snp.leading).offset(-10)
             make.height.equalTo(44)
         }
+        self.certificationButton.snp.makeConstraints { make in
+            make.top.equalTo(phoneNumberButton.snp.bottom).offset(10)
+            make.trailing.equalToSuperview().offset(-15)
+            make.width.equalTo(122)
+            make.height.equalTo(44)
+        }
+        self.certificationTextField.snp.makeConstraints { make in
+            make.top.equalTo(phoneNumberButton.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(15)
+            make.height.equalTo(44)
+            make.trailing.equalTo(certificationButton.snp.leading).offset(-10)
+        }
+    }
+    
+    //MARK: - passWordFieldLayout
+    private func setPassWordFieldLayout() {
         self.passWordLabel.snp.makeConstraints { make in
             make.top.equalTo(phoneNumberButton.snp.bottom).offset(40)
             make.leading.equalToSuperview().offset(15)
@@ -348,12 +512,10 @@ private extension PhoneNumberRegisterViewController {
             make.top.equalTo(passwordCheckTextField.snp.bottom).offset(10)
             make.leading.equalToSuperview().offset(15)
         }
-        self.nickNameLabel.snp.makeConstraints { make in
-            make.top.equalTo(passwordWarningLabel.snp.bottom).offset(40)
-            make.leading.equalToSuperview().offset(15)
-        }
-        self.nickNameTextField.setLayout(nickNameLabel.snp.bottom)
-        
+    }
+    
+    //MARK: - tableViewFieldLayout
+    private func setCheckBoxFieldLayout() {
         self.phone_linkLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(15)
             make.top.equalTo(nickNameTextField.snp.bottom).offset(40)
@@ -384,6 +546,7 @@ private extension PhoneNumberRegisterViewController {
         self.checkBoxStackView.snp.makeConstraints { make in
             make.top.equalTo(checkBoxTableView.snp.bottom).offset(5)
             make.centerX.equalToSuperview()
+            make.width.equalTo(300)
         }
         
         self.startButton.snp.makeConstraints { make in
@@ -392,22 +555,6 @@ private extension PhoneNumberRegisterViewController {
             make.trailing.equalToSuperview().offset(-15)
             make.height.equalTo(44)
             make.bottom.equalToSuperview()
-        }
-    }
-    
-    func setHiddenLayout() {
-        questionPopOverView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(5)
-            make.top.equalTo(questionmarkButton.snp.bottom).offset(20)
-            make.width.equalTo(340)
-            make.height.equalTo(48)
-        }
-        
-        phone_linkPopOverView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(5)
-            make.trailing.equalToSuperview().offset(-5)
-            make.bottom.equalToSuperview().offset(-5)
-            make.height.equalTo(30)
         }
     }
 }
