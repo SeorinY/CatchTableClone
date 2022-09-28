@@ -54,6 +54,11 @@ class PhoneNumberRegisterViewController: UIViewController {
         $0.font = Font.lightFont
         
     }
+    private let passwordCheckLabel = UILabel().then {
+        $0.text = "비밀번호가 일치하지 않습니다."
+        $0.font = Font.lightFont
+        $0.textColor = UIColor(named: "logoColor")
+    }
     private let nickNameLabel = UILabel().then {
         $0.text = "닉네임 (선택)"
         $0.font = Font.generalFont
@@ -108,7 +113,7 @@ class PhoneNumberRegisterViewController: UIViewController {
         $0.backgroundColor = .systemGray
         $0.font = Font.lightFont
     }
-    private let certificationTextField = CSTextField("인증번호를 입력해주세요").then {
+    private let certificationTextField = CSTextField("인증번호를 입력해주세요", .default, .numberPad).then {
         $0.isHidden = true
     }
     private let certificationButton = generalButton(.wait, "인증번호 확인").then {
@@ -318,8 +323,13 @@ extension PhoneNumberRegisterViewController {
         
         checkSeletAllButton()
     }
+    @objc func passwordTextFieldListner(_ sender: CSTextField) {
+//        if
+    }
     
-
+    @objc func passwordCheckTextFieldListner(_ sender: CSTextField) {
+        
+    }
 }
 
 //MARK: - Function
@@ -358,7 +368,7 @@ private extension PhoneNumberRegisterViewController {
             
             timeLabel.text = "\(countDown/60):\(second)"
             countDown -= 1
-            if countDown <= 0 {
+            if countDown < 0 {
                 Timer.invalidate()
             }
         }
@@ -372,6 +382,19 @@ private extension PhoneNumberRegisterViewController {
             timer2?.invalidate()
             timer2 = nil
         }
+    }
+    private func onlyCheckLabel() {
+        
+    }
+    private func onlyWarningLabel() {
+        
+    }
+    private func CheckAndWarningLabel() {
+        
+    }
+    private func noAnyWarningLabel() {
+        passwordWarningLabel.isHidden = true
+        
     }
 }
 //MARK: - Layout
