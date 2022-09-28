@@ -25,8 +25,8 @@ class FEQViewController: UIViewController {
         popupView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(view.height/6)
             make.bottom.equalToSuperview().offset(-view.height/6)
-            make.leading.equalToSuperview().offset(30)
-            make.trailing.equalToSuperview().offset(-30)
+            make.width.equalTo(370)
+            make.centerX.equalToSuperview()
         }
     }
 }

@@ -24,12 +24,17 @@ class InquireViewController: UIViewController{
         $0.font = Font.lightFont
     }
     
-    private let agreeButton = CheckBoxButton("위 내용에 동의합니다.")
+    private let agreeButton = CheckBoxButton("위 내용에 동의합니다.").then {
+        $0.addTarget(self, action: #selector(didTapagreeButton), for: .touchUpInside)
+    }
+    @objc private func didTapagreeButton(){
+        agreeButton.didClickButton()
+    }
     
     private let inquireButton = generalButton(.ready, "문의하기")
     
     private var image = [UIImage]()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -123,8 +128,7 @@ extension InquireViewController : UIImagePickerControllerDelegate & UINavigation
             UIImage{
             image.append(originalImage)
         }
-//        DEBUG_LOG(image)
-        
+        self.photoCollectionView?.reloadData()
         //창을 내려주자
         self.dismiss(animated: true, completion: nil)
     }
@@ -133,47 +137,32 @@ extension InquireViewController : UIImagePickerControllerDelegate & UINavigation
 extension InquireViewController : UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-//        DEBUG_LOG(indexPath.row)
         if indexPath.row == 0{
             self.present(self.imagePicker, animated: true, completion: nil)
         }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        //Cell reuse 푸는 법도 해보기 -> 아래 center 주석 취소
         guard var cell = photoCollectionView?.dequeueReusableCell(withReuseIdentifier: InquirePhotoCollectionViewCell.identifier, for: indexPath) as? InquirePhotoCollectionViewCell else{
             return InquirePhotoCollectionViewCell()
         }
-        cell.contentView.backgroundColor = .blue
-        if indexPath.row == 0{
-            cell.contentView.backgroundColor = .red
-        }
         
-        DEBUG_LOG(image.count)
-        cell.contentView.layer.cornerRadius = 5
-        if image.count > 0{
-            DEBUG_LOG("!!")
-            cell.imageView = UIImageView(image: image[1])
-            
+        if indexPath.row == 0 {
+            let image = UIImage(systemName: "photo")
+//            cell.imageView.contentMode = .center
+            cell.imageView.image = image
+        }else{
+            cell.imageView.image = image[indexPath.row-1]
         }
-        
         return cell
     }
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        1 + image.count
     }
-    
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -186,10 +175,17 @@ class InquirePhotoCollectionViewCell: UICollectionViewCell {
     public var imageView = UIImageView().then {
         $0.clipsToBounds = true
         $0.contentMode = .scaleToFill
+        $0.tintColor = .systemGray4
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        contentView.addSubview(imageView)
+        contentView.layer.cornerRadius = 5
+        contentView.layer.borderWidth = 1
+        contentView.layer.borderColor = UIColor.systemGray4.cgColor
+        contentView.backgroundColor = .systemGray6
+        contentView.clipsToBounds = true
         imageView.frame = bounds
     }
 
