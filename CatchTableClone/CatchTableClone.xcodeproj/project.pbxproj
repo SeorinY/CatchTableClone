@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		528E092E28CF1A8D00B7CAF1 /* FEQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E092D28CF1A8D00B7CAF1 /* FEQViewController.swift */; };
+		529F08AF28E3EC8900E5E074 /* InquirePhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529F08AE28E3EC8900E5E074 /* InquirePhotoCollectionViewCell.swift */; };
 		52B4D28628C5B76B00FEB427 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4D28528C5B76B00FEB427 /* AppDelegate.swift */; };
 		52B4D28828C5B76B00FEB427 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4D28728C5B76B00FEB427 /* SceneDelegate.swift */; };
 		52B4D28D28C5B76B00FEB427 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52B4D28B28C5B76B00FEB427 /* Main.storyboard */; };
@@ -26,8 +27,6 @@
 		FED51B7528C88BDC0093CDCA /* PhoneNumberRegisterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B7428C88BDC0093CDCA /* PhoneNumberRegisterCell.swift */; };
 		FED51B7728C88C260093CDCA /* PhoneNumberRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B7628C88C260093CDCA /* PhoneNumberRegisterViewController.swift */; };
 		FED51B7928C88C3D0093CDCA /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B7828C88C3D0093CDCA /* QuestionView.swift */; };
-		FED51B7B28C88C690093CDCA /* InquireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B7A28C88C680093CDCA /* InquireView.swift */; };
-		FED51B7D28C88C780093CDCA /* PhoneNumberLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B7C28C88C780093CDCA /* PhoneNumberLoginView.swift */; };
 		FED51B7F28C88C970093CDCA /* InquireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B7E28C88C970093CDCA /* InquireViewController.swift */; };
 		FED51B8128C88CA10093CDCA /* PhoneNumberLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B8028C88CA10093CDCA /* PhoneNumberLoginViewController.swift */; };
 		FED51B8328C88CCE0093CDCA /* FindPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED51B8228C88CCE0093CDCA /* FindPasswordViewController.swift */; };
@@ -38,6 +37,7 @@
 /* Begin PBXFileReference section */
 		4D4AEC18375228CF3181ED0A /* Pods-CatchTableClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatchTableClone.debug.xcconfig"; path = "Target Support Files/Pods-CatchTableClone/Pods-CatchTableClone.debug.xcconfig"; sourceTree = "<group>"; };
 		528E092D28CF1A8D00B7CAF1 /* FEQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FEQViewController.swift; sourceTree = "<group>"; };
+		529F08AE28E3EC8900E5E074 /* InquirePhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquirePhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		52B4D28228C5B76B00FEB427 /* CatchTableClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatchTableClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B4D28528C5B76B00FEB427 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52B4D28728C5B76B00FEB427 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,8 +60,6 @@
 		FED51B7428C88BDC0093CDCA /* PhoneNumberRegisterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberRegisterCell.swift; sourceTree = "<group>"; };
 		FED51B7628C88C260093CDCA /* PhoneNumberRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberRegisterViewController.swift; sourceTree = "<group>"; };
 		FED51B7828C88C3D0093CDCA /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
-		FED51B7A28C88C680093CDCA /* InquireView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquireView.swift; sourceTree = "<group>"; };
-		FED51B7C28C88C780093CDCA /* PhoneNumberLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberLoginView.swift; sourceTree = "<group>"; };
 		FED51B7E28C88C970093CDCA /* InquireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquireViewController.swift; sourceTree = "<group>"; };
 		FED51B8028C88CA10093CDCA /* PhoneNumberLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberLoginViewController.swift; sourceTree = "<group>"; };
 		FED51B8228C88CCE0093CDCA /* FindPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				FED51B7428C88BDC0093CDCA /* PhoneNumberRegisterCell.swift */,
+				529F08AE28E3EC8900E5E074 /* InquirePhotoCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -177,8 +176,6 @@
 				FED51B6B28C82EA20093CDCA /* LoginLogoView.swift */,
 				FED51B6D28C831550093CDCA /* LoginView.swift */,
 				FED51B7828C88C3D0093CDCA /* QuestionView.swift */,
-				FED51B7A28C88C680093CDCA /* InquireView.swift */,
-				FED51B7C28C88C780093CDCA /* PhoneNumberLoginView.swift */,
 				52B4D29F28C5B89F00FEB427 /* StoryBoard */,
 			);
 			path = View;
@@ -364,8 +361,8 @@
 				FED51B7528C88BDC0093CDCA /* PhoneNumberRegisterCell.swift in Sources */,
 				FED51B7728C88C260093CDCA /* PhoneNumberRegisterViewController.swift in Sources */,
 				FED51B7F28C88C970093CDCA /* InquireViewController.swift in Sources */,
-				FED51B7B28C88C690093CDCA /* InquireView.swift in Sources */,
 				FED51B8128C88CA10093CDCA /* PhoneNumberLoginViewController.swift in Sources */,
+				529F08AF28E3EC8900E5E074 /* InquirePhotoCollectionViewCell.swift in Sources */,
 				52B4D2A828C5B8DE00FEB427 /* Model.swift in Sources */,
 				52B4D2AC28C8261700FEB427 /* ConsoleLog.swift in Sources */,
 				52B4D2A628C5B8D800FEB427 /* DataKeys.swift in Sources */,
@@ -375,7 +372,6 @@
 				52B4D2A128C5B8B100FEB427 /* ViewModel.swift in Sources */,
 				FE33456A28CF1F4C00D568B4 /* Font.swift in Sources */,
 				52B4D28828C5B76B00FEB427 /* SceneDelegate.swift in Sources */,
-				FED51B7D28C88C780093CDCA /* PhoneNumberLoginView.swift in Sources */,
 				FED51B6C28C82EA20093CDCA /* LoginLogoView.swift in Sources */,
 				FED51B8A28C890300093CDCA /* Message.swift in Sources */,
 				FED7162C28C9BCE7006088BD /* CustomClass.swift in Sources */,
