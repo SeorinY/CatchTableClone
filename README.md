@@ -39,4 +39,4 @@
 ### 로그인 화면
 <img width="369" alt="image" src="https://user-images.githubusercontent.com/81281190/202984735-4b365d09-763c-4391-8963-c3f832291102.png">
 
-![Uploading image.png…]()
+<img width="357" alt="image" src="https://user-images.githubusercontent.com/81281190/202985347-a4725bae-4eb0-4b04-9aba-196c42776b91.png">
