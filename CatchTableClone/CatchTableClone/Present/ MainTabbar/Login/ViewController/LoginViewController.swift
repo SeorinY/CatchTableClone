@@ -86,7 +86,7 @@ extension LoginViewController : LoginVieWDelegate{
     
     func regsterButtonPressed() {
         navigationBackBtnLayout()
-        let vc = PhoneNumberRegisterViewController()
+        let vc = RegisterViewController()
         vc.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(vc, animated: false)
     }

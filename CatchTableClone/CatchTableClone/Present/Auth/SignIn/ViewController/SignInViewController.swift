@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class PhoneNumberLoginViewController: UIViewController {
+class SignInViewController: UIViewController {
     private let logoView = LoginLogoView(frame: .zero)
     private let idTextField = underLineLoginTextField("휴대폰 번호 or 닉네임")
     
@@ -95,8 +95,4 @@ class PhoneNumberLoginViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-20)
         }
     }
-}
-
-
-extension PhoneNumberLoginViewController : UITextFieldDelegate{
 }

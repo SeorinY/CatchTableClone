@@ -9,6 +9,7 @@ import UIKit
 import Foundation
 
 
+
 struct Message{
     static let Feq : [QuestionEnswer] = [QuestionEnswer(question:"애플 기기에서 애플 ID 인증 후 빈 화면이 나와요\n",
                                                         enswer: "사파이 브라우저 설정 때문에 생기는 현상입니다.\n 설정 앱 > Safari > 모든 쿠키 차단, 팝업 차단 기능을 끄면 로그인이 가능합니다.\n"),

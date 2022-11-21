@@ -6,7 +6,7 @@
 //
 
 import UIKit
-class PhoneNumberRegisterCell: UITableViewCell {
+class RegisterCell: UITableViewCell {
     private let checkBoxButton = CheckBoxButton("")
     var checkBoxState: CheckBoxButton.buttonStyle {
         get {

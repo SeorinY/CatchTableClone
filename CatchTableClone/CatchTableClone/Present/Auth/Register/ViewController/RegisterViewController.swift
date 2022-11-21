@@ -9,7 +9,7 @@ import UIKit
 import Then
 import SnapKit
 
-class PhoneNumberRegisterViewController: UIViewController {
+class RegisterViewController: UIViewController {
     private var timer1, timer2 : Timer?
     private let registerScrollView = UIScrollView().then{
         $0.backgroundColor = .systemBackground
@@ -80,7 +80,7 @@ class PhoneNumberRegisterViewController: UIViewController {
     }
     private let checkBoxTableView = UITableView().then {
         $0.separatorStyle = .none
-        $0.register(PhoneNumberRegisterCell.self, forCellReuseIdentifier: "checkBoxCell")
+        $0.register(RegisterCell.self, forCellReuseIdentifier: "checkBoxCell")
         $0.allowsMultipleSelection = true
     }
     //    private var
@@ -132,7 +132,7 @@ class PhoneNumberRegisterViewController: UIViewController {
     }
 }
 //MARK: - UITableViewDelegate & UITableViewDataSource
-extension PhoneNumberRegisterViewController : UITableViewDelegate, UITableViewDataSource {
+extension RegisterViewController : UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -140,14 +140,14 @@ extension PhoneNumberRegisterViewController : UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = checkBoxTableView.dequeueReusableCell(withIdentifier: "checkBoxCell", for: indexPath) as! PhoneNumberRegisterCell
+        let cell = checkBoxTableView.dequeueReusableCell(withIdentifier: "checkBoxCell", for: indexPath) as! RegisterCell
         cell.configure(Message.checkBoxItem[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         checkBoxTableView.deselectRow(at: indexPath, animated: false)
-        let cell = checkBoxTableView.cellForRow(at: indexPath) as! PhoneNumberRegisterCell
+        let cell = checkBoxTableView.cellForRow(at: indexPath) as! RegisterCell
         if indexPath.row == 3 && cell.checkBoxState == .check && phone_linkButton.style == .check{
             phone_linkPopOverView.viewAppear()
             Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { Timer in
@@ -181,7 +181,7 @@ extension PhoneNumberRegisterViewController : UITableViewDelegate, UITableViewDa
 
 //MARK: action
 
-extension PhoneNumberRegisterViewController {
+extension RegisterViewController {
     func addAction() {
         phoneNumberTextField.addTarget(self, action: #selector(canSendCertification(_:)), for: .editingChanged)
         phone_linkButton.addTarget(self, action: #selector(phone_linkButtonPressed), for: .touchUpInside)
@@ -265,7 +265,7 @@ extension PhoneNumberRegisterViewController {
     
     @objc private func phone_linkButtonPressed() {
         let indexPath = IndexPath(row: 3, section: 0)
-        let cell = checkBoxTableView.cellForRow(at: indexPath) as! PhoneNumberRegisterCell
+        let cell = checkBoxTableView.cellForRow(at: indexPath) as! RegisterCell
         if cell.checkBoxState == phone_linkButton.style {
             if cell.checkBoxState == .unCheck {
                 tableViewCheckBoxCount += 1
@@ -296,7 +296,7 @@ extension PhoneNumberRegisterViewController {
         
         for section in 0..<checkBoxTableView.numberOfSections {
             for row in 0..<checkBoxTableView.numberOfRows(inSection: section) {
-                let cell = checkBoxTableView.cellForRow(at: [section,row]) as! PhoneNumberRegisterCell
+                let cell = checkBoxTableView.cellForRow(at: [section,row]) as! RegisterCell
                 cell.buttonCheck(checkBoxStyle)
             }
         }
@@ -312,7 +312,7 @@ extension PhoneNumberRegisterViewController {
         alarmCheckBoxCount = sender.style == .unCheck ? alarmCheckBoxCount - 1 : alarmCheckBoxCount + 1
         
         let indexPath = IndexPath(row: 4, section: 0)
-        let cell = checkBoxTableView.cellForRow(at: indexPath) as! PhoneNumberRegisterCell
+        let cell = checkBoxTableView.cellForRow(at: indexPath) as! RegisterCell
         if alarmCheckBoxCount == maxAlarmCheckBoxCount {
             tableViewCheckBoxCount = cell.checkBoxState == .unCheck ? tableViewCheckBoxCount + 1: tableViewCheckBoxCount
             cell.buttonCheck(.check)
@@ -333,7 +333,7 @@ extension PhoneNumberRegisterViewController {
 }
 
 //MARK: - Function
-private extension PhoneNumberRegisterViewController {
+private extension RegisterViewController {
     func checkSeletAllButton() {
         if tableViewCheckBoxCount == maxTableViewCheckBoxCount {
             seletAllButton.styleConfigure(.check)
@@ -398,7 +398,7 @@ private extension PhoneNumberRegisterViewController {
     }
 }
 //MARK: - Layout
-private extension PhoneNumberRegisterViewController {
+private extension RegisterViewController {
     func setUI() {
         self.view.addSubview(registerScrollView)
         self.registerScrollView.addSubview(contentView)

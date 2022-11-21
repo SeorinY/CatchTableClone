@@ -21,6 +21,7 @@ class FEQViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        
         super.viewDidLayoutSubviews()
         popupView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(view.height/6)

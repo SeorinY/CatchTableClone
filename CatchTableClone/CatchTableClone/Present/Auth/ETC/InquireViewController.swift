@@ -99,6 +99,7 @@ class InquireViewController: UIViewController{
     }
     
     private func configureImageCollection(){
+        
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 100 , height: 100)
         layout.scrollDirection = .horizontal
